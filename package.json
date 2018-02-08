@@ -50,7 +50,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "size": "size-limit",
+    "size:why": "size-limit --why"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
@@ -97,6 +99,7 @@
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1"
+    "enzyme-adapter-react-16": "^1.1.1",
+    "size-limit": "^0.14.0"
   }
 }
