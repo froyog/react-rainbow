@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import Card, { CardContent, CardImage, CardAction } from './Card';
-import Typography from './Typography';
-import demo from './demo.jpeg';
+// import Typography from './Typography';
+// import demo from './demo.jpeg';
+import { TextField } from './Form';
 
 
 const styles = theme => ({
@@ -23,27 +24,55 @@ const styles = theme => ({
     },
 });
 
-const App = ({ classes }) => {
-    return (
-        <Card
-            className={classes.card}
-            inverse
-        >
-            <CardImage 
-                className={classes.cardImage}
-                src={demo}
-            />
-            <CardContent>
-                <Typography type="title" className={classes.title}>
-                    北洋故事｜见筑北洋
-                </Typography>
-                北洋校园的巍峨楼宇，它们似是自有永有地，矗立在平实之中、变革之上，喧嚣之外、安宁之里。
-            </CardContent>
-            <CardAction>
-                <p className={classes.action}>TAKE THIS ACTION</p>
-            </CardAction>
-        </Card>
-    )
-};
+class App extends React.Component {
+    constructor () {
+        super();
+        this.state = {
+            name: '',
+            email: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange (name, value) {
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleClick () {
+        this.setState({
+            error: 'something bad happens',
+        })
+        console.log(this.state);
+        
+    }
+
+    render () {
+        return (
+            <Card><CardContent>
+                <TextField 
+                    text="Your name" 
+                    value={this.state.name} 
+                    name="name"
+                    onChange={this.handleChange} 
+                    placeholder={'example@example.com'}
+                    errorMessage={this.state.error}
+                    fullWidth
+                />
+                <TextField 
+                    text="Your email address" 
+                    value={this.state.email}
+                    name="email" 
+                    onChange={this.handleChange} 
+                    placeholder={'example@example.com'}
+                    fullWidth
+                />
+                <button onClick={this.handleClick.bind(this)}>jss</button>
+            </CardContent></Card>
+        )
+    }
+}
 
 export default injectSheet(styles)(App);
