@@ -9,6 +9,7 @@ const createColorPalette = customColorPalette => {
         text: {
             primary: '#212529',
             secondary: '#555',
+            muted: '#777',
         },
         background: '#fff',
     };
