@@ -6,7 +6,7 @@ import injectSheet from 'react-jss';
 const styles = theme => ({
     '@global': {
         html: {
-            boxSizing: 'content-box',
+            boxSizing: 'border-box',
         },
         '*, *::before, *::after': {
             boxSizing: 'inherit',

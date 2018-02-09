@@ -18,6 +18,14 @@ const createTheme = (customTheme = {}) => {
         zIndex: {
 
         },
+        transition: {
+            common: (duration, property = 'all') => {
+                if (typeof duration !== 'string') {
+                    throw new Error('duration must be a string indicating seconds');
+                }
+                return `${property} ${duration} cubic-bezier(.23, 1, .32, 1) 0ms`;
+            },
+        },
         spacer: 8,
     };
 };
