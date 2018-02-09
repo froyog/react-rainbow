@@ -45,7 +45,6 @@ class App extends React.Component {
         this.setState({
             error: 'something bad happens',
         })
-        console.log(this.state);
         
     }
 
@@ -59,7 +58,7 @@ class App extends React.Component {
                     onChange={this.handleChange} 
                     placeholder={'example@example.com'}
                     errorMessage={this.state.error}
-                    fullWidth
+                    helperText="some really important hint"
                 />
                 <TextField 
                     text="Your email address" 
@@ -67,7 +66,6 @@ class App extends React.Component {
                     name="email" 
                     onChange={this.handleChange} 
                     placeholder={'example@example.com'}
-                    fullWidth
                 />
                 <button onClick={this.handleClick.bind(this)}>jss</button>
             </CardContent></Card>

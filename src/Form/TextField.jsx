@@ -5,11 +5,14 @@ import cn from 'classnames';
 
 
 const styles = theme => ({
-    root: {
+    wrapper: {
+        margin: `${theme.spacer}px 0`,
         display: 'inline-block',
+    },
+    root: {
         position: 'relative',
         width: 256,
-        height: 56,
+        height: 48,
         fontSize: 16,
         lineHeight: 1.5,
         backgroundColor: 'transparent',
@@ -17,7 +20,7 @@ const styles = theme => ({
     },
     label: {
         position: 'absolute',
-        top: 22,
+        top: 24,
         zIndex: 1,
         fontWeight: 'normal',
         lineHeight: '22px',
@@ -39,7 +42,7 @@ const styles = theme => ({
     },
     placeholder: {
         position: 'absolute',
-        bottom: 15,
+        top: 22,
         fontSize: 16,
         color: theme.colors.text.muted,
         lineHeight: '22px',
@@ -51,7 +54,7 @@ const styles = theme => ({
     },
     bottomBar: {
         position: 'absolute',
-        bottom: 8,
+        bottom: 0,
         width: '100%',
         border: 0,
         margin: 0,
@@ -70,13 +73,14 @@ const styles = theme => ({
         borderBottomColor: theme.colors.error,
     },
     input: {
-        position: 'relative',
+        position: 'absolute',
+        bottom: 0,
         width: '100%',
-        height: '100%',
         padding: 0,
+        paddingBottom: 6,
         border: 'none',
-        marginTop: 2,
         fontSize: 16,
+        lineHeight: 1.15,
         outline: 'none',
         color: theme.colors.text.primary,
         backgroundColor: 'transparent',
@@ -89,11 +93,14 @@ const styles = theme => ({
         },
     },
     helper: {
-        position: 'relative',
-        bottom: 5,
+        margin: `0 0 ${theme.spacer}px`,
         fontSize: 12,
-        lineHeight: '12px',
         color: theme.colors.text.secondary,
+        opacity: 0,
+        transition: theme.transition.common('.45s', 'opacity'),
+    },
+    helperActive: {
+        opacity: 1,
     },
     errorMessage: {
         color: theme.colors.error,
@@ -150,62 +157,67 @@ class TextField extends React.Component {
         
         return (
             <div className={cn(
-                classes.root,
-                { [classes.fullWidth]: fullWidth },
+                classes.wrapper,
                 classNameInput,
             )}>
-                <label
-                    className={cn(
-                        classes.label,
-                        {
-                            [classes.labelActive]: hasContent || isFocus,
-                            [classes.labelFocus]: isFocus,
-                            [classes.labelError]: errorMessage,
-                        },
-                    )} 
-                    htmlFor={name}
-                >
-                    {text}
-                </label>
-                { placeholder && !hasContent && isFocus &&
-                    <div className={classes.placeholder}>
-                        {placeholder}
-                    </div>
-                }
-                <input
-                    className={classes.input}
-                    value={value}
-                    type={type}
-                    name={name}
-                    disabled={disabled}
-                    onFocus={this.handleInputFocus}
-                    onBlur={this.handleInputBlur}
-                    onChange={this.handleInputChange}
-                />
-                <div>
-                    <hr aria-hidden="true" className={classes.bottomBar} />
-                    <hr
-                        aria-hidden="true"
+                <div className={cn(
+                    classes.root,
+                    { [classes.fullWidth]: fullWidth },
+                )}>
+                    <label
                         className={cn(
-                            classes.bottomBar,
-                            classes.bottomBarColored,
+                            classes.label,
                             {
-                                [classes.bottomBarColoredActive]: isFocus || errorMessage,
-                                [classes.bottomBarColoredError]: errorMessage,
+                                [classes.labelActive]: hasContent || isFocus,
+                                [classes.labelFocus]: isFocus,
+                                [classes.labelError]: errorMessage,
                             },
-                        )}
+                        )} 
+                        htmlFor={name}
+                    >
+                        {text}
+                    </label>
+                    { placeholder && !hasContent && isFocus &&
+                        <div className={classes.placeholder}>
+                            {placeholder}
+                        </div>
+                    }
+                    <input
+                        className={classes.input}
+                        value={value}
+                        type={type}
+                        name={name}
+                        disabled={disabled}
+                        onFocus={this.handleInputFocus}
+                        onBlur={this.handleInputBlur}
+                        onChange={this.handleInputChange}
                     />
+                    <div>
+                        <hr aria-hidden="true" className={classes.bottomBar} />
+                        <hr
+                            aria-hidden="true"
+                            className={cn(
+                                classes.bottomBar,
+                                classes.bottomBarColored,
+                                {
+                                    [classes.bottomBarColoredActive]: isFocus || errorMessage,
+                                    [classes.bottomBarColoredError]: errorMessage,
+                                },
+                            )}
+                        />
+                    </div>
                 </div>
                 {
                     (errorMessage || helperText) &&
-                    <div className={cn(
+                    <p className={cn(
                         classes.helper,
                         { 
-                            [classes.errorMessage]: errorMessage 
+                            [classes.errorMessage]: errorMessage, 
+                            [classes.helperActive]: isFocus || hasContent,
                         },
                     )}>
                         { errorMessage ? errorMessage : helperText }
-                    </div>
+                    </p>
                 }
             </div>
         )
