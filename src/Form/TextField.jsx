@@ -46,13 +46,6 @@ const styles = theme => ({
         whiteSpace: 'nowrap',
         zIndex: 2,
     },
-    error: {
-        position: 'relative',
-        bottom: 5,
-        fontSize: 12,
-        lineHeight: '12px',
-        color: theme.colors.error,
-    },
     fullWidth: {
         width: '100%',
     },
@@ -94,6 +87,16 @@ const styles = theme => ({
             cursor: 'not-allowed',
             color: 'rgba(0, 0, 0, .57)',
         },
+    },
+    helper: {
+        position: 'relative',
+        bottom: 5,
+        fontSize: 12,
+        lineHeight: '12px',
+        color: theme.colors.text.secondary,
+    },
+    errorMessage: {
+        color: theme.colors.error,
     },
 });
 
@@ -140,6 +143,7 @@ class TextField extends React.Component {
             fullWidth,
             errorMessage,
             disabled,
+            helperText,
         } = this.props;
         const { isFocus } = this.state;
         const hasContent = !!value;
@@ -192,9 +196,15 @@ class TextField extends React.Component {
                         )}
                     />
                 </div>
-                { errorMessage &&
-                    <div className={classes.error}>
-                        {errorMessage}
+                {
+                    (errorMessage || helperText) &&
+                    <div className={cn(
+                        classes.helper,
+                        { 
+                            [classes.errorMessage]: errorMessage 
+                        },
+                    )}>
+                        { errorMessage ? errorMessage : helperText }
                     </div>
                 }
             </div>
@@ -215,6 +225,7 @@ TextField.propTypes = {
     fullWidth: PropTypes.bool,
     errorMessage: PropTypes.string,
     disabled: PropTypes.bool,
+    helperText: PropTypes.string,
 };
 
 TextField.defaultProps = {
