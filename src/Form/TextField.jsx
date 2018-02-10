@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import cn from 'classnames';
+import HelperText from './HelperText';
 
 // font family
 //fullWidth
@@ -134,14 +135,13 @@ class TextField extends React.Component {
             isFocus: false,
         });
     }
-
+    
     handleInputChange (e) {
         const { name, value } = e.target;
         this.props.onChange(name, value);
     }
 
     render () {
-        
         const {
             classes,
             className: classNameInput,
@@ -156,6 +156,7 @@ class TextField extends React.Component {
             errorMessage,
             disabled,
             helperText,
+            onChange,
             ...other,
         } = this.props;
         const { isFocus } = this.state;
@@ -217,15 +218,12 @@ class TextField extends React.Component {
                 </div>
                 {
                     (errorMessage || helperText) &&
-                    <p className={cn(
-                        classes.helper,
-                        { 
-                            [classes.errorMessage]: errorMessage, 
-                            [classes.helperActive]: isFocus || hasContent,
-                        },
-                    )}>
-                        { errorMessage ? errorMessage : helperText }
-                    </p>
+                    <HelperText
+                        color={errorMessage && 'error'} 
+                        active={isFocus || hasContent}
+                    >
+                        {errorMessage ? errorMessage : helperText}
+                    </HelperText>
                 }
             </div>
         )
