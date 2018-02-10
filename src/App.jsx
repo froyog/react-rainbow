@@ -53,20 +53,21 @@ class App extends React.Component {
         return (
             <Card><CardContent>
                 <TextField 
-                    text="Your name" 
+                    label="Your name" 
                     value={this.state.name} 
                     name="name"
                     onChange={this.handleChange} 
-                    placeholder={'example@example.com'}
                     errorMessage={this.state.error}
                     helperText="some really important hint"
-                />
+                    fullWidth
+                    />
                 <TextField 
-                    text="Your email address" 
+                    label="Your email address" 
                     value={this.state.email}
                     name="email" 
                     onChange={this.handleChange} 
                     placeholder={'example@example.com'}
+                    helperText="some really important hint"
                 />
                 <Textarea 
                     label="Summary of yourself"
@@ -74,6 +75,8 @@ class App extends React.Component {
                     name="summary"
                     id="summary"
                     onChange={this.handleChange}
+                    helperText="hahaha"
+                    fullWidth
                 />
             </CardContent></Card>
         )

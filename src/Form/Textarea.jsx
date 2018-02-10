@@ -2,16 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import cn from 'classnames';
+import HelperText from './HelperText';
 
 
 const styles = theme => ({
     root: {
-        position: 'absolute',
-        display: 'block',
+        position: 'relative',
+        display: 'inline-block',
         margin: `${theme.spacer}px 0`,
         borderRadius: 4,
         border: `1px solid ${theme.colors.text.primary}`,
         overflow: 'hidden',
+    },
+    fullWidth: {
+        width: '100%',
+        display: 'block',
     },
     textarea: {
         display: 'block',
@@ -111,6 +116,7 @@ class Textarea extends React.Component {
                 classes.root,
                 {
                     [classes.textareaColored]: isFocus,
+                    [classes.fullWidth]: fullWidth,
                 },
                 classNameInput,
             )}>
