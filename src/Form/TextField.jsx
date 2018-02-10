@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import cn from 'classnames';
 
-
+// TODO: id, label for
+// ...other
+// root lassName
+// text -> label
+// font family
+//fullWidth
 const styles = theme => ({
     wrapper: {
         margin: `${theme.spacer}px 0`,

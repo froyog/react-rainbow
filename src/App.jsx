@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import Card, { CardContent, CardImage, CardAction } from './Card';
 // import Typography from './Typography';
 // import demo from './demo.jpeg';
-import { TextField } from './Form';
+import { TextField, Textarea } from './Form';
 
 
 const styles = theme => ({
@@ -29,7 +29,8 @@ class App extends React.Component {
         super();
         this.state = {
             name: '',
-            email: ''
+            email: '',
+            summary: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -67,7 +68,13 @@ class App extends React.Component {
                     onChange={this.handleChange} 
                     placeholder={'example@example.com'}
                 />
-                <button onClick={this.handleClick.bind(this)}>jss</button>
+                <Textarea 
+                    label="Summary of yourself"
+                    value={this.state.summary}
+                    name="summary"
+                    id="summary"
+                    onChange={this.handleChange}
+                />
             </CardContent></Card>
         )
     }
