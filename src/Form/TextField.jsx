@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import cn from 'classnames';
 
-// TODO: id, label for
-// ...other
-// root lassName
-// text -> label
 // font family
 //fullWidth
 const styles = theme => ({
@@ -27,13 +23,14 @@ const styles = theme => ({
         position: 'absolute',
         top: 24,
         zIndex: 1,
-        fontWeight: 'normal',
+        fontWeight: theme.typography.fontWeightNormal,
+        fontFamily: theme.typography.fontFamily,
         lineHeight: '22px',
+        color: theme.colors.text.muted,
         pointerEvents: 'none',
         userSelect: 'none',
         transformOrigin: 'left top 0px',
         transform: 'scale(1) translate(0, 0)',
-        color: theme.colors.text.muted,
         transition: theme.transition.common('.45s'),
     },
     labelFocus: {
@@ -48,7 +45,8 @@ const styles = theme => ({
     placeholder: {
         position: 'absolute',
         top: 22,
-        fontSize: 16,
+        fontSize: theme.typography.pxToRem(16),
+        fontFamily: theme.typography.fontFamily,
         color: theme.colors.text.muted,
         lineHeight: '22px',
         whiteSpace: 'nowrap',
@@ -84,7 +82,8 @@ const styles = theme => ({
         padding: 0,
         paddingBottom: 6,
         border: 'none',
-        fontSize: 16,
+        fontSize: theme.typography.pxToRem(16),
+        fontFamily: theme.typography.fontFamily,
         lineHeight: 1.15,
         outline: 'none',
         color: theme.colors.text.primary,
@@ -101,8 +100,8 @@ const styles = theme => ({
         margin: `0 0 ${theme.spacer}px`,
         fontSize: 12,
         color: theme.colors.text.secondary,
-        opacity: 0,
         transition: theme.transition.common('.45s', 'opacity'),
+        opacity: 0,
     },
     helperActive: {
         opacity: 1,
@@ -146,9 +145,10 @@ class TextField extends React.Component {
         const {
             classes,
             className: classNameInput,
+            id,
             value,
             name,
-            text,
+            label,
             type,
             color,
             placeholder,
@@ -156,6 +156,7 @@ class TextField extends React.Component {
             errorMessage,
             disabled,
             helperText,
+            ...other,
         } = this.props;
         const { isFocus } = this.state;
         const hasContent = !!value;
@@ -163,11 +164,12 @@ class TextField extends React.Component {
         return (
             <div className={cn(
                 classes.wrapper,
-                classNameInput,
+                { [classes.fullWidth]: fullWidth },
             )}>
                 <div className={cn(
                     classes.root,
                     { [classes.fullWidth]: fullWidth },
+                    classNameInput,
                 )}>
                     <label
                         className={cn(
@@ -178,9 +180,9 @@ class TextField extends React.Component {
                                 [classes.labelError]: errorMessage,
                             },
                         )} 
-                        htmlFor={name}
+                        htmlFor={id}
                     >
-                        {text}
+                        {label}
                     </label>
                     { placeholder && !hasContent && isFocus &&
                         <div className={classes.placeholder}>
@@ -196,6 +198,7 @@ class TextField extends React.Component {
                         onFocus={this.handleInputFocus}
                         onBlur={this.handleInputBlur}
                         onChange={this.handleInputChange}
+                        {...other}
                     />
                     <div>
                         <hr aria-hidden="true" className={classes.bottomBar} />
@@ -234,7 +237,7 @@ TextField.propTypes = {
     className: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     name: PropTypes.string,
     type: PropTypes.oneOf([ 'text', 'password' ]),
     color: PropTypes.oneOf([ 'primary', 'secondary' ]),
