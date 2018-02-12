@@ -57,7 +57,7 @@ const Typography = props => {
     // which is also customizable
     const Component = component || componentMapper[type];
 
-    return <Component className={className} {...other} />
+    return <Component className={className} {...other} />;
 };
 
 Typography.propTypes = {

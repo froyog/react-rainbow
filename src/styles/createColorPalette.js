@@ -13,6 +13,6 @@ const createColorPalette = customColorPalette => {
         },
         background: '#fff',
     };
-}
+};
 
 export default createColorPalette;

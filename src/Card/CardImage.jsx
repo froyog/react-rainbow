@@ -10,7 +10,7 @@ const styles = () => {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
         },
-    }
+    };
 };
 
 

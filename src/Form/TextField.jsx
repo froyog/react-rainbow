@@ -150,13 +150,11 @@ class TextField extends React.Component {
             name,
             label,
             type,
-            color,
             placeholder,
             fullWidth,
             errorMessage,
             disabled,
             helperText,
-            onChange,
             ...other,
         } = this.props;
         const { isFocus } = this.state;
@@ -226,7 +224,7 @@ class TextField extends React.Component {
                     </HelperText>
                 }
             </div>
-        )
+        );
     }
 }
 

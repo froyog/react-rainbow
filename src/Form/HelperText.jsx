@@ -38,7 +38,7 @@ const HelperText = props => {
         )}>
             {children}
         </p>
-    )
+    );
 };
 
 HelperText.propTypes = {

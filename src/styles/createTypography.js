@@ -99,6 +99,6 @@ const createTypography = (colors, customTypography) => {
             backgroundColor: '#fcf8e3',
         }
     }, other);
-}
+};
 
 export default createTypography;

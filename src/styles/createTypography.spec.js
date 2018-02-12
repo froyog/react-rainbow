@@ -5,7 +5,7 @@ describe('createTypography', () => {
     let colorPalette;
     beforeAll(() => {
         colorPalette = createColorPalette();
-    })
+    });
 
     test('with default typography', () => {
         const typography = createTypography(colorPalette, {});
@@ -34,8 +34,8 @@ describe('pxToRem', () => {
     });
 
     test('with invaild values', () => {
-        expect(() => { pxToRem(16.5) }).toThrow();
-        expect(() => { pxToRem('string') }).toThrow();
-        expect(() => { pxToRem() }).toThrow();
+        expect(() => { pxToRem(16.5); }).toThrow();
+        expect(() => { pxToRem('string'); }).toThrow();
+        expect(() => { pxToRem(); }).toThrow();
     });
 });

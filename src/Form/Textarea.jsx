@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import cn from 'classnames';
-import HelperText from './HelperText';
 
 
 const styles = theme => ({
@@ -99,7 +98,6 @@ class Textarea extends React.Component {
             className: classNameInput,
             value,
             id,
-            onChange,
             label,
             name,
             cols,

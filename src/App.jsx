@@ -45,7 +45,7 @@ class App extends React.Component {
     handleClick () {
         this.setState({
             error: 'something bad happens',
-        })
+        });
         
     }
 
@@ -60,7 +60,7 @@ class App extends React.Component {
                     errorMessage={this.state.error}
                     helperText="some really important hint"
                     fullWidth
-                    />
+                />
                 <TextField 
                     label="Your email address" 
                     value={this.state.email}
@@ -79,7 +79,7 @@ class App extends React.Component {
                     fullWidth
                 />
             </CardContent></Card>
-        )
+        );
     }
 }
 
