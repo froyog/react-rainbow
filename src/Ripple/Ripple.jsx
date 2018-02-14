@@ -96,6 +96,7 @@ class Ripple extends React.Component {
                 onEnter={this.handleEnter}
                 onExit={this.handleExit}
                 timeout={timeout}
+                {...other}
             >
                 <span className={cn(
                     classes.wrapper,

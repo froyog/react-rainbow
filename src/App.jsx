@@ -5,16 +5,21 @@ import injectSheet from 'react-jss';
 // import Typography from './Typography';
 // import demo from './demo.jpeg';
 // import { TextField, Textarea } from './Form';
-import { Ripple } from './Ripple';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+// import { Ripple } from './Ripple';
+// import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { RippleContainer } from './Ripple';
 
 
 
 const styles = theme => ({
     hero: {
-        width: '100%',
-        height: 500,
-        backgroundColor: '#f0f0f0',
+        fontSize: '16px',
+        padding: '8px 16px',
+        backgroundColor: theme.colors.primary,
+        color: 'white',
+        border: 0,
+        position: 'relative',
+        boxShadow: 0,
     }
 });
 
@@ -26,19 +31,18 @@ class App extends React.Component {
     }
 
     handleClick () {
-        console.log('down');
-        
     }
 
     render () {
         const { classes } = this.props;
         return (
-            <div 
+            <button 
                 className={classes.hero}
-                onMouseDown={this.handleClick}
+                onClick={this.handleClick.bind(this)}
             >
-                
-            </div>
+                BUTTON
+                <RippleContainer />
+            </button>
         );
     }
 }

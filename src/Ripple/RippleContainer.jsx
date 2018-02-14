@@ -17,11 +17,11 @@ const styles = theme => ({
         top: 0,
         overflow: 'hidden',
         borderRadius: 'inherit',
-        pointerEvents: 'none',
         zIndex: 0,
     },
 });
 const DURATION = 550;
+const DELAY = 80;
 
 class RippleContainer extends React.Component {
     constructor () {
@@ -30,9 +30,28 @@ class RippleContainer extends React.Component {
             rippleArray: [],
             nextKey: 0,
         };
+
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleMouseUp = this.handleMouseUp.bind(this);
+        this.handleMouseLeave = this.handleMouseLeave.bind(this);
+        this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchEnd = this.handleTouchEnd.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
     }
 
-    _prepare (e = {}, options = {}, cb) {
+    handleMouseDown (e) { this._prepareStart(e); }
+
+    handleMouseUp (e) { this._stop(e); }
+
+    handleMouseLeave (e) { this._stop(e); }
+
+    handleTouchStart (e) { this._prepareStart(e); }
+
+    handleTouchEnd (e) { this._stop(e); }
+
+    handleTouchMove (e) { this._stop(e); }
+
+    _prepareStart (e = {}, options = {}, cb) {
         const center = this.props.center;
 
         const element = ReactDOM.findDOMNode(this);
@@ -44,6 +63,7 @@ class RippleContainer extends React.Component {
                 left: 0,
                 right: 0,
             };
+        
         
         let rippleX, rippleY, rippleSize;
         if (
@@ -72,7 +92,19 @@ class RippleContainer extends React.Component {
             rippleSize = Math.sqrt(Math.pow(sizeX, 2) + Math.pow(sizeY, 2));
         }
 
-        this._start({ rippleX, rippleY, rippleSize });
+        // Execute
+        if (e.touches) {
+            // delay the ripple effect for touch devices
+            this.startWrapper = () => {
+                this._start({ rippleX, rippleY, rippleSize });
+            }
+            this.startTimeout = setTimeout(() => {
+                this.startWrapper();
+                this.startWrapper = null;
+            }, DELAY);
+        } else {
+            this._start({ rippleX, rippleY, rippleSize });
+        }
     }
 
     _start (params) {
@@ -99,6 +131,29 @@ class RippleContainer extends React.Component {
         });
     }
 
+    _stop (e) {
+        clearTimeout(this.startTimeout);
+        const { rippleArray } = this.state;
+
+        if (e.type === 'touchend' && this.startWrapper) {
+            e.persist();
+            this.startWrapper();
+            this.startWrapper = null;
+            this.startTimeout = setTimeout(() => {
+                this._stop(e);
+            }, 0);
+            return;
+        }
+
+        this.startWrapper = null;
+
+        if (rippleArray && rippleArray.length) {
+            this.setState({
+                rippleArray: rippleArray.slice(1),
+            });
+        }
+    }
+
     render () {
         const {
             classes,
@@ -112,6 +167,12 @@ class RippleContainer extends React.Component {
                     classes.root,
                     classNameInput,
                 )}
+                onMouseDown={this.handleMouseDown}
+                onMouseUp={this.handleMouseUp}
+                onMouseLeave={this.handleMouseLeave}
+                onTouchStart={this.handleTouchStart}
+                onTouchEnd={this.handleTouchEnd}
+                onTouchMove={this.handleTouchMove}
                 component="span"
                 enter
                 exit

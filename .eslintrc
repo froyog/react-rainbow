@@ -71,19 +71,6 @@
         "no-labels": [1, { "allowLoop": false, "allowSwitch": false }],
         "no-lone-blocks": 1,
         "no-loop-func": 1,
-        "no-mixed-operators": [
-            1,
-            {
-                "groups": [
-                    ["+", "-", "*", "/", "%", "**"],
-                    ["&", "|", "^", "~", "<<", ">>", ">>>"],
-                    ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
-                    ["&&", "||"],
-                    ["in", "instanceof"]
-                ],
-                "allowSamePrecedence": false
-            }
-        ],
         "no-multi-str": 1,
         "no-native-reassign": 1,
         "no-negated-in-lhs": 1,
