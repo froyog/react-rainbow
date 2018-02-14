@@ -51,6 +51,10 @@ class RippleContainer extends React.Component {
 
     handleTouchMove (e) { this._stop(e); }
 
+    componentWillUnmount () {
+        clearTimeout(this.startTimeout);
+    }
+
     _prepareStart (e = {}, options = {}, cb) {
         const center = this.props.center;
 
@@ -97,7 +101,7 @@ class RippleContainer extends React.Component {
             // delay the ripple effect for touch devices
             this.startWrapper = () => {
                 this._start({ rippleX, rippleY, rippleSize });
-            }
+            };
             this.startTimeout = setTimeout(() => {
                 this.startWrapper();
                 this.startWrapper = null;

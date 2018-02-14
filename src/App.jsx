@@ -12,14 +12,12 @@ import { RippleContainer } from './Ripple';
 
 
 const styles = theme => ({
-    hero: {
-        fontSize: '16px',
-        padding: '8px 16px',
-        backgroundColor: theme.colors.primary,
-        color: 'white',
-        border: 0,
+    button: {
+        width: 48,
+        height: 48,
+        backgroundColor: '#fcfcfc',
         position: 'relative',
-        boxShadow: 0,
+        border: 0,
     }
 });
 
@@ -37,11 +35,11 @@ class App extends React.Component {
         const { classes } = this.props;
         return (
             <button 
-                className={classes.hero}
+                className={classes.button}
                 onClick={this.handleClick.bind(this)}
             >
-                BUTTON
-                <RippleContainer />
+                A
+                <RippleContainer center />
             </button>
         );
     }
