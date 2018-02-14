@@ -1,15 +1,21 @@
 import React from 'react';
 import { ThemeProvider } from 'react-jss';
 import createTheme from '../styles/createTheme';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
-export const shallowWithTheme = (children, options) => {
-    const theme = createTheme();
-    const wrapper = shallow(<ThemeProvider theme={theme}>{children}</ThemeProvider>, options);
-    const instance = wrapper.instance();
-    if (options) return wrapper.shallow({ context: {
-        ...instance.getChildContext(),
-        ...options.context
-    } });
-    return wrapper.shallow({ context: instance.getChildContext() });
+const theme = createTheme();
+// a better and clearer solution by https://github.com/styled-components/jest-styled-components#theming
+export const shallowWithTheme = tree => {
+    const context = shallow(<ThemeProvider theme={theme} />)
+        .instance()
+        .getChildContext();
+    return shallow(tree, { context });
+};
+
+export const mountWithTheme = tree => {
+    const context = shallow(<ThemeProvider theme={theme} />)
+        .instance()
+        .getChildContext();
+    // workaround provided by https://github.com/airbnb/enzyme/issues/814#issuecomment-362319285
+    return mount(shallow(tree, { context }).get(0));
 };
