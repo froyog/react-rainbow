@@ -17,7 +17,6 @@ const styles = theme => ({
         top: 0,
         overflow: 'hidden',
         borderRadius: 'inherit',
-        zIndex: 0,
     },
 });
 const DURATION = 550;
@@ -88,7 +87,7 @@ class RippleContainer extends React.Component {
         if (center) {
             rippleSize = Math.sqrt((2 * Math.pow(rect.width, 2) + Math.pow(rect.height, 2)) / 3);
             if (rippleSize % 2 === 0) {
-                rippleSize += 1;
+                rippleSize -= 1;
             }
         } else {
             const sizeX = Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
@@ -162,6 +161,8 @@ class RippleContainer extends React.Component {
         const {
             classes,
             className: classNameInput,
+            // eslint-disable-next-line
+            center,
             ...other,
         } = this.props;
 
