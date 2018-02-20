@@ -35,7 +35,7 @@ class App extends React.Component {
     render () {
         const { classes } = this.props;
         return (
-            <Switch />
+            <Switch active label={'haha'} />
         );
     }
 }

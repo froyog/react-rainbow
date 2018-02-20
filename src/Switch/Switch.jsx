@@ -3,14 +3,23 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import cn from 'classnames';
 import { RippleContainer } from '../Ripple';
+import Typography from '../Typography';
+import { lighten } from '../styles/colorUtils';
 
 const styles = theme => ({
     root: {
+        display: 'inline-flex',
+        alignItems: 'center',
+    },
+    wrapper: {
+        cursor: 'pointer',
         width: 62, 
         height: 48,
         position: 'relative',
-        cursor: 'pointer',
         display: 'inline-block',
+    },
+    wrapperDisabled: {
+        cursor: 'default',
     },
     guide: {
         position: 'absolute',
@@ -27,7 +36,10 @@ const styles = theme => ({
         willChange: 'background',
     },
     guideActive: {
-        backgroundColor: '#bbdefb',
+        backgroundColor: lighten(theme.colors.primary, .7),
+    },
+    guideDisabled: {
+        backgroundColor: 'rgba(0, 0, 0, .12)',
     },
     toggleWrapper: {
         position: 'relative',
@@ -38,8 +50,8 @@ const styles = theme => ({
         willChange: 'transform',
     },
     toggleWrapperActive: {
-        // transform: 'translateX(14px)',
-        color: '#2196f3',
+        transform: 'translateX(14px)',
+        color: theme.colors.primary,
     },
     toggle: {
         position: 'absolute',
@@ -51,14 +63,17 @@ const styles = theme => ({
         width: 20,
         borderRadius: '50%',
         margin: 'auto',
-        background: '#f1f1f1',
+        backgroundColor: '#f1f1f1',
         boxShadow: '0 1px 1px rgba(0,0,0,.24), 0 0 1px rgba(0,0,0,.12)',
         transition: 'background .15s ease, box-shadow .15s ease',
         willChange: 'background, box-shadow',
     },
     toggleActive: {
-        background: '#2196f3',
+        backgroundColor: theme.colors.primary,
         boxShadow: '0 1px 2px rgba(0,0,0,.36), 0 0 1px rgba(0,0,0,.12)',
+    },
+    toggleDisabled: {
+        backgroundColor: '#bdbdbd',
     }
 });
 
@@ -73,6 +88,9 @@ class Switch extends React.Component {
     }
 
     handleClickSwitch () {
+        if (this.props.disabled) {
+            return;
+        }
         this.setState({
             active: !this.state.active
         });
@@ -82,33 +100,58 @@ class Switch extends React.Component {
         const { 
             classes, 
             className: classNameInput,
+            disabled,
+            label,
         } = this.props;
         const { active } = this.state;
 
         return (
             <label
-                className={cn(
-                    classes.root,
-                    classNameInput,
-                )}
+                className={cn(classes.root, classNameInput)}
                 onClick={this.handleClickSwitch}
             >
                 <span className={cn(
-                    classes.guide,
-                    { [classes.guideActive]: active, },
-                )}>
-                </span>
-                
-                <span className={cn(
-                    classes.toggleWrapper,
-                    { [classes.toggleWrapperActive]: active, },
+                    classes.wrapper,
+                    {
+                        [classes.wrapperDisabled]: disabled,
+                    },
                 )}>
                     <span className={cn(
-                        classes.toggle,
-                        { [classes.toggleActive]: active },
+                        classes.guide,
+                        { 
+                            [classes.guideActive]: active, 
+                            [classes.guideDisabled]: disabled,
+                        },
                     )}></span>
-                    <RippleContainer center />
+                    <span className={cn(
+                        classes.toggleWrapper,
+                        { 
+                            [classes.toggleWrapperActive]: active, 
+                        },
+                    )}>
+                        <span className={cn(
+                            classes.toggle,
+                            { 
+                                [classes.toggleActive]: active,
+                                [classes.toggleDisabled]: disabled, 
+                            },
+                        )}></span>
+                        {
+                            // not showing ripple when disabled
+                            !disabled &&
+                            <RippleContainer center />
+                        }
+                    </span>
                 </span>
+                {
+                    label &&
+                    <Typography 
+                        component="span"
+                        className={classes.label}
+                    >
+                        {label}
+                    </Typography>
+                }
             </label>
         );
     }
@@ -116,7 +159,9 @@ class Switch extends React.Component {
 
 Switch.propTypes = {
     classes: PropTypes.object.isRequired,
-    
+    className: PropTypes.string,
+    disabled: PropTypes.bool,
+    label: PropTypes.string,
 };
 
 Switch.defaultProps = {
