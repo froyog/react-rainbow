@@ -74,7 +74,9 @@ const styles = theme => ({
     },
     toggleDisabled: {
         backgroundColor: '#bdbdbd',
-    }
+    },
+    label: {
+    },
 });
 
 class Switch extends React.Component {
@@ -160,12 +162,9 @@ class Switch extends React.Component {
 Switch.propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    active: PropTypes.bool,
     disabled: PropTypes.bool,
     label: PropTypes.string,
-};
-
-Switch.defaultProps = {
-    
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(Switch);
