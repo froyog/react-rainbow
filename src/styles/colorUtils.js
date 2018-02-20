@@ -4,7 +4,7 @@
  * @param {string} hex - CSS color in hex, one of: #nnn, #nnnnnn
  * @returns {string} A CSS RGB color
  */
-const hexToRGB = hex => {
+export const hexToRGB = hex => {
     if (hex.charAt(0) !== '#') {
         throw new Error('invaild hex color, must starts with #');
     }
@@ -15,7 +15,7 @@ const hexToRGB = hex => {
     let colors = hex.match(re);
 
     if (!colors || colors.length !== 3) {
-        throw new Error('invaild hex color, not match');
+        throw new Error('invaild hex color input');
     }
     // convert #nnn to #nnnnnn
     if (colors && colors[0].length === 1) {
@@ -32,9 +32,31 @@ const hexToRGB = hex => {
  * @param {string} RGB - A CSS RGB color
  * @returns {string} CSS hex color 
  */
-const RGBToHex = RGB => {
-    
-}
+export const RGBToHex = rgb => {
+    const re = /rgb\((\d{1,3}), (\d{1,3}), (\d{1,3})\)/;
+    const rgbColors = re.exec(rgb).slice(1, 4);
+    let hexString = '';
+    for (let color of rgbColors) {
+        const colorDec = +color;
+        if (colorDec > 255 || colorDec < 0 || typeof colorDec !== 'number') {
+            throw new Error('invaild rgb color type!');
+        }
+        
+        let hex = colorDec.toString(16);
+        if (hex.length === 1) {
+            hex = '0' + hex;
+        }
+        hexString += hex;
+    }
+    // shorter
+    if (hexString[0] === hexString[1] && 
+        hexString[2] === hexString[3] && 
+        hexString[4] === hexString[5]
+    ) {
+        return `#${hexString[1]}${hexString[3]}${hexString[5]}`;
+    }
+    return `#${hexString}`;
+};
 
 /**
  * Converts a css color to a color object
@@ -42,7 +64,7 @@ const RGBToHex = RGB => {
  * @param {string} color - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
  * @returns {object} - { type, values: number[] }
  */
-const decompose = color => {
+export const decompose = color => {
     if (color.charAt(0) === '#') {
         return decompose(hexToRGB(color));
     }
@@ -61,7 +83,7 @@ const decompose = color => {
  * @param {array} color.values - [n, n, n] or [n, n, n, n]
  * @returns {string} A color object
  */
-const recompose = colorObject => {
+export const recompose = colorObject => {
     let { type, values } = colorObject;
     if (type.indexOf('rgb') !== -1) {
         // not converting alpha (the fourth value)
@@ -101,5 +123,8 @@ export const lighten = (color, multiplier) => {
         }
     }
 
+    if (color.type === 'rgb') {
+        return RGBToHex(recompose(color));
+    }
     return recompose(color);
-}
+};
