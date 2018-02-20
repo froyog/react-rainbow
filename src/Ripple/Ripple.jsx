@@ -8,6 +8,7 @@ const styles = theme => ({
     wrapper: {
         display: 'block',
         opacity: 1,
+        pointerEvents: 'none',
     },
     ripple: {
         width: 50,
@@ -77,8 +78,6 @@ class Ripple extends React.Component {
             rippleX,
             rippleY,
             rippleSize,
-            timeout,
-            in: inProp,
             ...other,
         } = this.props;
         const { wrapperExiting, rippleEntering } = this.state;
@@ -92,10 +91,8 @@ class Ripple extends React.Component {
 
         return (
             <Transition
-                in={inProp}
                 onEnter={this.handleEnter}
                 onExit={this.handleExit}
-                timeout={timeout}
                 {...other}
             >
                 <span className={cn(
