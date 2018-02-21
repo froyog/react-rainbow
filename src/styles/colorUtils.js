@@ -96,7 +96,7 @@ export const recompose = colorObject => {
     }
 
     return `${type}(${values.join(', ')})`;
-}
+};
 
 /** 
  * Lightens a color
