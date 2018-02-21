@@ -26,16 +26,25 @@ class App extends React.Component {
     constructor () {
         super();
         this.state = {
+            active: false
         };
     }
 
-    handleClick () {
+    handleSwitchChange (active) {
+        this.setState({
+            active: active
+        });
     }
 
     render () {
-        const { classes } = this.props;
         return (
-            <Switch active label={'haha'} />
+            <div>
+                <Switch
+                    active={this.state.active}
+                    onChange={this.handleSwitchChange.bind(this)}
+                    label={this.state.active ? 'Primary' : 'Secondary'}
+                />
+            </div>
         );
     }
 }

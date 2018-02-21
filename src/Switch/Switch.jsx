@@ -79,92 +79,83 @@ const styles = theme => ({
     },
 });
 
-class Switch extends React.Component {
-    constructor (props) {
-        super(props);
-        this.state = {
-            active: props.active || false,
-        };
-
-        this.handleClickSwitch = this.handleClickSwitch.bind(this);
-    }
-
-    handleClickSwitch () {
-        if (this.props.disabled) {
+const Switch = props => {
+    const handleClickSwitch = () => {
+        const { active, disabled, onChange } = props;
+        if (disabled) {
             return;
         }
-        this.setState({
-            active: !this.state.active
-        });
-    }
+        onChange && onChange(!active);
+    };
 
-    render () {
-        const { 
-            classes, 
-            className: classNameInput,
-            disabled,
-            label,
-        } = this.props;
-        const { active } = this.state;
+    const { 
+        classes, 
+        className: classNameInput,
+        active,
+        disabled,
+        label,
+        disableRipple,
+    } = props;
 
-        return (
-            <label
-                className={cn(classes.root, classNameInput)}
-                onClick={this.handleClickSwitch}
-            >
+    return (
+        <label
+            className={cn(classes.root, classNameInput)}
+            onClick={handleClickSwitch}
+        >
+            <span className={cn(
+                classes.wrapper,
+                {
+                    [classes.wrapperDisabled]: disabled,
+                },
+            )}>
                 <span className={cn(
-                    classes.wrapper,
-                    {
-                        [classes.wrapperDisabled]: disabled,
+                    classes.guide,
+                    { 
+                        [classes.guideActive]: active, 
+                        [classes.guideDisabled]: disabled,
+                    },
+                )}></span>
+                <span className={cn(
+                    classes.toggleWrapper,
+                    { 
+                        [classes.toggleWrapperActive]: active, 
                     },
                 )}>
                     <span className={cn(
-                        classes.guide,
+                        classes.toggle,
                         { 
-                            [classes.guideActive]: active, 
-                            [classes.guideDisabled]: disabled,
+                            [classes.toggleActive]: active,
+                            [classes.toggleDisabled]: disabled, 
                         },
                     )}></span>
-                    <span className={cn(
-                        classes.toggleWrapper,
-                        { 
-                            [classes.toggleWrapperActive]: active, 
-                        },
-                    )}>
-                        <span className={cn(
-                            classes.toggle,
-                            { 
-                                [classes.toggleActive]: active,
-                                [classes.toggleDisabled]: disabled, 
-                            },
-                        )}></span>
-                        {
-                            // not showing ripple when disabled
-                            !disabled &&
-                            <RippleContainer center />
-                        }
-                    </span>
+                    {
+                        // not showing ripple when disabled
+                        !disabled && !disableRipple &&
+                        <RippleContainer center />
+                    }
                 </span>
-                {
-                    label &&
-                    <Typography 
-                        component="span"
-                        className={classes.label}
-                    >
-                        {label}
-                    </Typography>
-                }
-            </label>
-        );
-    }
+            </span>
+            {
+                label &&
+                <Typography 
+                    component="span"
+                    className={classes.label}
+                >
+                    {label}
+                </Typography>
+            }
+        </label>
+    );
 };
 
 Switch.propTypes = {
     classes: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    active: PropTypes.bool.isRequired,
     className: PropTypes.string,
-    active: PropTypes.bool,
     disabled: PropTypes.bool,
     label: PropTypes.string,
+    disableRipple: PropTypes.bool,
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(Switch);
