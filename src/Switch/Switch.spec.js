@@ -6,7 +6,7 @@ import { RippleContainer } from '../Ripple';
 
 describe('<Switch />', () => {
     test('rendering correctly', () => {
-        const wrapper = shallowWithTheme(<Switch />);
+        const wrapper = shallowWithTheme(<Switch active={false} onChange={() => {}} />);
         expect(wrapper.dive().name()).toBe('label');
     });
 
@@ -15,6 +15,8 @@ describe('<Switch />', () => {
             <Switch 
                 className="test-class"
                 label="test-label"
+                active={false} 
+                onChange={() => {}}
             />);
         const classes = wrapper.prop('classes');
         expect(wrapper.dive().hasClass(classes.root)).toBe(true);
@@ -58,7 +60,13 @@ describe('<Switch />', () => {
     });
 
     test('prop: label', () => {
-        const wrapper = shallowWithTheme(<Switch label="test label" />);
+        const wrapper = shallowWithTheme(
+            <Switch 
+                label="test label" 
+                active={false} 
+                onChange={() => {}}
+            />
+        );
         expect(
             wrapper
                 .dive()
@@ -70,15 +78,16 @@ describe('<Switch />', () => {
     });
 
     describe('prop: disabled', () => {
-        let wrapper;
-        beforeAll(() => {
-            wrapper = mountWithTheme(<Switch disabled />);
-        });
-        
         test('render with correct classes', () => {
-            const shallowWrapper = shallowWithTheme(<Switch disabled />);
-            const classes = shallowWrapper.prop('classes');
-            const spanWrapper = shallowWrapper.dive().childAt(0);
+            const wrapper = shallowWithTheme(
+                <Switch 
+                    active={false}
+                    onChange={() => {}}
+                    disabled 
+                />
+            );
+            const classes = wrapper.prop('classes');
+            const spanWrapper = wrapper.dive().childAt(0);
             expect(spanWrapper.hasClass(classes.wrapperDisabled)).toBe(true);
             expect(
                 spanWrapper
@@ -94,25 +103,49 @@ describe('<Switch />', () => {
         });
         
         test('rendering without Ripples', () => {
+            const wrapper = shallowWithTheme(
+                <Switch 
+                    disabled 
+                    active={false} 
+                    onChange={() => {}}
+                />
+            );
             expect(wrapper.contains(<RippleContainer />)).toBe(false);
         });
 
         test('ignoring user interactions', () => {
-            expect(wrapper.state().active).toBe(false);
-            const labelWrapper = wrapper.find('label');
-            labelWrapper.simulate('click');
-            expect(wrapper.state().active).toBe(false);
+            const mockOnChange = jest.fn();
+            const wrapper = mountWithTheme(
+                <Switch 
+                    active={false}
+                    onChange={mockOnChange}
+                    disabled
+                />
+            );
+            wrapper.find('label').simulate('click');
+            expect(mockOnChange).toHaveBeenCalledTimes(0);
         });
     });
     
-    // describe('click behavior', () => {
-    //     let wrapper;
-    //     beforeAll(() => {
-    //         wrapper = mountWithTheme(<Switch active/>);
-    //     });
+    describe('click behavior', () => {
+        let wrapper;
+        const mockOnChange = jest.fn();
+        beforeAll(() => {
+            wrapper = mountWithTheme(
+                <Switch 
+                    active={false}
+                    onChange={mockOnChange}
+                    disableRipple
+                />
+            );
+        });
 
-    //     test('respecting the passed-in props', () => {
-    //         expect(wrapper.state().active).toBe(true);
-    //     });
-    // });
+        test('respecting the passed-in props', () => {
+            wrapper.find('label').simulate('click');
+            expect(mockOnChange).toBeCalledWith(true);
+            wrapper.setProps({ active: true });
+            wrapper.find('label').simulate('click');
+            expect(mockOnChange).toBeCalledWith(false);
+        });
+    });
 });
