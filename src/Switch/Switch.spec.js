@@ -78,7 +78,7 @@ describe('<Switch />', () => {
     });
 
     describe('prop: disabled', () => {
-        test('render with correct classes', () => {
+        test('rendering with correct classes', () => {
             const wrapper = shallowWithTheme(
                 <Switch 
                     active={false}
