@@ -78,7 +78,7 @@ const createTypography = (colors, customTypography) => {
             fontSize: pxToRem(14),
             fontWeight: fontWeightNormal,
             lineHeight: 1.5,
-            color: colors.text.primary,
+            color: colors.text.secondary,
         },
         blockquote: {
             fontFamily,
