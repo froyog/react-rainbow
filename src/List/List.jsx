@@ -33,16 +33,17 @@ const List = props => {
         ...other,
     } = props;
 
-    const className = cn(
-        classes.root,
-        {
-            [classes.titleProvided]: title,
-        },
-        classNameInput,
-    );
-
     return (
-        <Component className={className} {...other}>
+        <Component 
+            className={cn(
+                classes.root,
+                {
+                    [classes.titleProvided]: title,
+                },
+                classNameInput,
+            )} 
+            {...other}
+        >
             { title &&
                 <Typography 
                     component="li"
@@ -72,7 +73,8 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-    component: 'ul',  
+    component: 'ul',
+    customClasses: {},
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(List);
