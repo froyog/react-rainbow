@@ -104,20 +104,24 @@ class Textarea extends React.Component {
             rows,
             fullWidth,
             disabled,
+            customClasses,
             ...other,
         } = this.props;
         const { isFocus } = this.state;
         const hasContent = !!value;
 
         return (
-            <div className={cn(
-                classes.root,
-                {
-                    [classes.textareaColored]: isFocus,
-                    [classes.fullWidth]: fullWidth,
-                },
-                classNameInput,
-            )}>
+            <div 
+                className={cn(
+                    classes.root,
+                    {
+                        [classes.textareaColored]: isFocus,
+                        [classes.fullWidth]: fullWidth,
+                    },
+                    classNameInput,
+                )}
+                {...other}
+            >
                 <textarea 
                     id={id}
                     value={value}
@@ -126,6 +130,7 @@ class Textarea extends React.Component {
                         {
                             [classes.textareaColored]: isFocus,
                         },
+                        customClasses.textarea,
                     )}
                     name={name} 
                     cols={cols} 
@@ -134,7 +139,6 @@ class Textarea extends React.Component {
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     onChange={this.handleChange}
-                    {...other}
                 />
                 <label
                     htmlFor={id}
@@ -144,6 +148,7 @@ class Textarea extends React.Component {
                             [classes.labelActive]: isFocus || hasContent,
                             [classes.labelFocus]: isFocus,
                         },
+                        customClasses.label
                     )}
                 >
                     {label}
@@ -170,6 +175,7 @@ Textarea.propTypes = {
 Textarea.defaultProps = {
     cols: 40,
     rows: 8,
+    customClasses: {},
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(Textarea);
