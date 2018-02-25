@@ -18,7 +18,7 @@ const createTheme = (customTheme = {}) => {
         zIndex: {
 
         },
-        transition: {
+        transitions: {
             common: (duration, property = 'all') => {
                 if (typeof duration !== 'string') {
                     throw new Error('duration must be a string indicating seconds');
