@@ -1,7 +1,8 @@
 {
   "name": "react-rainbow",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://rainbow.twtstudio.com/react",
   "dependencies": {
     "classnames": "^2.2.5",
     "deepmerge": "^2.0.1",
