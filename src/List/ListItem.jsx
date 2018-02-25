@@ -21,7 +21,7 @@ const ListItem = props => {
         <Component className={className} {...other}>
             {children}
         </Component>
-    )
+    );
 };
 
 ListItem.propTypes = {
