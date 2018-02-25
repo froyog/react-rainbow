@@ -1,7 +1,8 @@
 import React from 'react';
-import { Switch } from '../../src';
+import PropTypes from 'prop-types';
+import { Switch } from 'react-rainbow';
 
-class App extends React.Component {
+class SwitchDemo extends React.Component {
     constructor () {
         super();
         this.state = {
@@ -25,4 +26,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default SwitchDemo;
