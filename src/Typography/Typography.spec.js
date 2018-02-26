@@ -25,7 +25,6 @@ describe('<Typography />', () => {
         'title',
         'subtitle',
         'body',
-        'bodySmall',
         'blockquote',
         'highlight',
     ].map(type => {

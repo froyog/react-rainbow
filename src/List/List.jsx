@@ -47,7 +47,7 @@ const List = props => {
             { title &&
                 <Typography 
                     component="li"
-                    type="bodySmall"
+                    type="body"
                     className={cn(
                         classes.title,
                         customClasses.title
