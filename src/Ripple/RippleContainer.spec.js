@@ -1,7 +1,6 @@
 import React from 'react';
-import { shallowWithTheme, mountWithTheme  } from '../util-test';
+import { shallowWithTheme } from '../util-test';
 import RippleContainer from './RippleContainer';
-import { ThemeProvider } from 'theming/dist/cjs';
 
 describe('<RippleContainer />', () => {
     test('rendering correctly', () => {
@@ -16,9 +15,4 @@ describe('<RippleContainer />', () => {
         expect(wrapper.dive().hasClass(classes.root)).toBe(true);
         expect(wrapper.dive().hasClass('test-class')).toBe(true);
     });
-    
-    test('aa', () => {
-        const wrapper = mountWithTheme(<RippleContainer />);
-        wrapper.childAt(0).simulate('mousedown');
-    })
 });

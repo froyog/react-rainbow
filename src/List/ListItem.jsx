@@ -50,7 +50,7 @@ const ListItem = props => {
                 <RippleContainer />
             }
         </Component>
-    )
+    );
 };
 
 ListItem.propTypes = {
