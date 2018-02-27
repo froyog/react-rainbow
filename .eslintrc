@@ -47,7 +47,6 @@
         "new-parens": 1,
         "no-array-constructor": 1,
         "no-caller": 1,
-        "no-cond-assign": [1, "always"],
         "no-const-assign": 1,
         "no-control-regex": 1,
         "no-delete-var": 1,

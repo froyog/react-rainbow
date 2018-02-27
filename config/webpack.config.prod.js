@@ -95,6 +95,7 @@ module.exports = {
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
       'react-rainbow': paths.libSrc,
+      'react-rainbow-docs': paths.appSrc,
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -212,6 +213,10 @@ module.exports = {
               )
             ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+          },
+          {
+            test: /\.md/,
+            loader: require.resolve('raw-loader'),
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.

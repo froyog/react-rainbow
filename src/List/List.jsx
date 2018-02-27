@@ -7,7 +7,7 @@ import Typography from '../Typography';
 const styles = theme => ({
     root: {
         position: 'relative',
-        padding: `${theme.spacer * 2} 0`,
+        paddingBottom: theme.spacer,
         margin: 0,
         listStyle: 'none',
     },
@@ -15,7 +15,7 @@ const styles = theme => ({
         paddingTop: 0,
     },
     title: {
-        padding: `0 ${theme.spacer * 2}`,
+        padding: `0 ${theme.spacer * 2}px`,
         lineHeight: '48px',
         fontWeight: theme.typography.fontWeightHeavy,
         listStyle: 'none',
@@ -33,20 +33,21 @@ const List = props => {
         ...other,
     } = props;
 
-    const className = cn(
-        classes.root,
-        {
-            [classes.titleProvided]: title,
-        },
-        classNameInput,
-    );
-
     return (
-        <Component className={className} {...other}>
+        <Component 
+            className={cn(
+                classes.root,
+                {
+                    [classes.titleProvided]: title,
+                },
+                classNameInput,
+            )} 
+            {...other}
+        >
             { title &&
                 <Typography 
                     component="li"
-                    type="bodySmall"
+                    type="body"
                     className={cn(
                         classes.title,
                         customClasses.title
@@ -72,7 +73,8 @@ List.propTypes = {
 };
 
 List.defaultProps = {
-    component: 'ul',  
+    component: 'ul',
+    customClasses: {},
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(List);

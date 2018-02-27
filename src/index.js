@@ -4,5 +4,7 @@ export { default as Reboot } from './Reboot';
 export { 
     default as List,
     ListItem, 
+    ListText,
+    ListSecondaryAction
 } from './List';
 export { default as Typography } from './Typography';

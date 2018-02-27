@@ -3,26 +3,28 @@ import { Switch, Route } from 'react-router';
 import injectSheets from 'react-jss';
 import Home from './Home';
 import Header from './Header';
-// import Pages from './Docs';
+import Docs from './Docs';
 
 const styles = theme => ({
+    root: {
+        minHeight: '100vh',
+    },
     main: {
         margin: '50px auto 0',
         maxWidth: 1200,
         position: 'relative',
-        minHeight: '100vh',
     },
 });
 
 const App = props => {
     const { classes } = props;
     return (
-        <div>
+        <div className={classes.root}>
             <Header />
             <main className={classes.main}>
                 <Switch>
-                    <Route path="/" component={Home} />
-                    {/* <Route path="/docs" component={Docs} /> */}
+                    <Route exact path="/react" component={Home} />
+                    <Route path="/react/docs" component={Docs} />
                 </Switch>
             </main>
         </div>
