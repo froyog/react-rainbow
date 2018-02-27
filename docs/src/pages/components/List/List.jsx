@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import injectSheets from 'react-jss';
-import { List, ListItem, ListText } from 'react-rainbow';
+import { List, ListItem, ListText, 
+    ListSecondaryAction, Switch } from 'react-rainbow';
 
 const styles = theme => ({
     root: {
@@ -13,14 +14,20 @@ const styles = theme => ({
 const ListDemo = ({ classes }) => {
     return (
         <List 
-            title="cast"
+            title="settings"
             className={classes.root}
         >
             <ListItem withBorder ripple>
-                <ListText>Tom Cruise</ListText>
+                <ListText>Wi-Fi</ListText>
+                <ListSecondaryAction>
+                    <Switch active={false} onChange={() => {}} />
+                </ListSecondaryAction>
             </ListItem>
             <ListItem ripple>
-                <ListText>Harry Styles</ListText>
+                <ListText>Bluetooth</ListText>
+                <ListSecondaryAction>
+                    <Switch active={true} onChange={() => {}} />
+                </ListSecondaryAction>
             </ListItem>
         </List>
     );
