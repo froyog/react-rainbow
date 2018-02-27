@@ -20,7 +20,7 @@ const styles = theme => ({
     },
 });
 
-const ListTextItem = props => {
+const ListText = props => {
     const {
         classes,
         className: classNameInput,
@@ -60,7 +60,7 @@ const ListTextItem = props => {
     );
 };
 
-ListTextItem.propTypes = {
+ListText.propTypes = {
     classes: PropTypes.object.isRequired,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
@@ -69,10 +69,11 @@ ListTextItem.propTypes = {
         subtitle: PropTypes.string,
         children: PropTypes.string,
     }),
+    inset: PropTypes.bool,
 };
 
-ListTextItem.defaultProps = {
+ListText.defaultProps = {
     customClasses: {},
 };
 
-export default injectSheet(styles, { inject: ['classes'] })(ListTextItem);
+export default injectSheet(styles, { inject: ['classes'] })(ListText);
