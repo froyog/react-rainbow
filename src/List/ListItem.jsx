@@ -11,6 +11,7 @@ const styles = theme => ({
         justifyContent: 'flex-start',
         alignItems: 'center',
         textDecoration: 'none',
+        padding: `12px ${theme.spacer * 2}px`,
     },
     disabled: {
         opacity: .5,

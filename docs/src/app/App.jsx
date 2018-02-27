@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router';
 import injectSheets from 'react-jss';
 import Home from './Home';
 import Header from './Header';
-// import Pages from './Docs';
+import Docs from './Docs';
 
 const styles = theme => ({
     main: {
@@ -21,8 +21,8 @@ const App = props => {
             <Header />
             <main className={classes.main}>
                 <Switch>
-                    <Route path="/" component={Home} />
-                    {/* <Route path="/docs" component={Docs} /> */}
+                    <Route exact path="/react" component={Home} />
+                    <Route path="/react/docs" component={Docs} />
                 </Switch>
             </main>
         </div>

@@ -64,14 +64,14 @@ const Home = props => {
                 </Typography>
                 <ul className={classes.linkGroup}>
                     <li><NavLink 
-                        to="/" 
+                        to="/react" 
                         className={classes.link}
                         activeClassName={classes.linkActive}
                     >
                         主页
                     </NavLink></li>
                     <li><NavLink 
-                        to="/docs" 
+                        to="/react/docs" 
                         className={classes.link}
                         activeClassName={classes.linkActive}
                     >
