@@ -2,7 +2,7 @@ import React from 'react';
 import { shallowWithTheme } from '../util-test';
 
 import ListItem from './ListItem';
-import Ripple, { RippleContainer } from '../Ripple';
+import { RippleContainer } from '../Ripple';
 
 describe('<ListItem />', () => {
     test('rendering correctly', () => {
@@ -15,6 +15,11 @@ describe('<ListItem />', () => {
         const classes = wrapper.prop('classes');
         expect(wrapper.dive().hasClass(classes.root)).toBe(true);
         expect(wrapper.dive().hasClass('test-class')).toBe(true);
+    });
+
+    test('spreading custom props', () => {
+        const wrapper = shallowWithTheme(<ListItem data-custom="test" />);
+        expect(wrapper.dive().prop('data-custom')).toBe('test');
     });
 
     test('prop: withBorder', () => {
@@ -37,10 +42,5 @@ describe('<ListItem />', () => {
     test('prop: component', () => {
         const wrapper = shallowWithTheme(<ListItem component="div" />);
         expect(wrapper.dive().name()).toBe('div');
-    });
-
-    test('spreading custom props', () => {
-        const wrapper = shallowWithTheme(<ListItem data-custom="test" />);
-        expect(wrapper.dive().prop('data-custom')).toBe('test');
     });
 });
