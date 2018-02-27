@@ -60,6 +60,8 @@ ListItem.propTypes = {
     children: PropTypes.node,
     component: PropTypes.oneOfType([ PropTypes.string, PropTypes.element ]),
     withBorder: PropTypes.bool,
+    disabled: PropTypes.bool,
+    ripple: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
