@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ListDemo from '../pages/components/List';
+import DocsRenderer from './DocsRenderer';
+import markdownContent from '../pages/components/Switch/switch.md';
+import ListDemo from '../pages/components/List/List';
 
 const Docs = () => {
     return (

@@ -64,6 +64,7 @@ const Home = props => {
                 </Typography>
                 <ul className={classes.linkGroup}>
                     <li><NavLink 
+                        exact
                         to="/react" 
                         className={classes.link}
                         activeClassName={classes.linkActive}

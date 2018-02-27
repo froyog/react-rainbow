@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheets from 'react-jss';
-import { List, ListItem, ListTextItem } from 'react-rainbow';
+import { List, ListItem, ListText } from 'react-rainbow';
 
 const styles = theme => ({
     root: {
@@ -17,10 +17,10 @@ const ListDemo = ({ classes }) => {
             className={classes.root}
         >
             <ListItem withBorder ripple>
-                <ListTextItem>Tom Cruise</ListTextItem>
+                <ListText>Tom Cruise</ListText>
             </ListItem>
             <ListItem ripple>
-                <ListTextItem>Harry Styles</ListTextItem>
+                <ListText>Harry Styles</ListText>
             </ListItem>
         </List>
     );

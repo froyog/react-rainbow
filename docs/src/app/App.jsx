@@ -6,18 +6,20 @@ import Header from './Header';
 import Docs from './Docs';
 
 const styles = theme => ({
+    root: {
+        minHeight: '100vh',
+    },
     main: {
         margin: '50px auto 0',
         maxWidth: 1200,
         position: 'relative',
-        minHeight: '100vh',
     },
 });
 
 const App = props => {
     const { classes } = props;
     return (
-        <div>
+        <div className={classes.root}>
             <Header />
             <main className={classes.main}>
                 <Switch>
