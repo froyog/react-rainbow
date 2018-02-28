@@ -78,6 +78,7 @@ export const decompose = color => {
 
 /**
  * Converts a color object to plain CSS color string
+ * 
  * @param {object} colorObject - { type, values: number[] }
  * @param {string} colorObject.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'. Otherwise throw
  * @param {array} color.values - [n, n, n] or [n, n, n, n]
@@ -98,12 +99,36 @@ export const recompose = colorObject => {
     return `${type}(${values.join(', ')})`;
 };
 
+/**
+ * Set transparency of a given color
+ * 
+ * @param {string} color - CSS color, one of: #nnn, #nnnnnn, rgb, rgba, hsl, hsla
+ * @param {number} alpha - alpha to set
+ * @returns {string} - CSS color in rgba or hsla form
+ */
+export const setAlpha = (color, alpha) => {
+    if (!color) {
+        throw new Error('missing argument: color');
+    }
+    if (!alpha) {
+        throw new Error('missing argument: multiplier');
+    }
+
+    color = decompose(color);
+    let { type, values } = color;
+    if (type === 'rgb' || type === 'hsl') {
+        type += 'a';
+    }
+    values[3] = alpha;
+    return recompose({ type, values });
+};
+
 /** 
  * Lightens a color
  * 
  * @param {string} color - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
  * @param {number} multiplier - reflects the degree of lightening the given color
- * @returns {string} CSS color in rgb form
+ * @returns {string} CSS color in rgb form (hex if possible)
 */
 export const lighten = (color, multiplier) => {
     if (!color) {

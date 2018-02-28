@@ -2,7 +2,8 @@ import {
     hexToRGB,
     RGBToHex, 
     decompose, 
-    recompose, 
+    recompose,
+    setAlpha,
     lighten 
 } from './colorUtils';
 
@@ -92,6 +93,30 @@ describe('styles/colorUtils', () => {
                 type: 'hsla',
                 values: [100, 50, 25, .6]
             })).toBe('hsla(100, 50%, 25%, 0.6)');
+        });
+    });
+
+    describe('setAlpha', () => {
+        test('invoke with missing arguments', () => {
+            expect(() => { setAlpha(); }).toThrow();
+            expect(() => { setAlpha('#00a1e9'); }).toThrow();
+        });
+
+        test('set alpha given a hex color', () => {
+            expect(setAlpha('#00a1e9', .5)).toBe('rgba(0, 161, 233, 0.5)');
+        });
+
+        test('set alpha given a rgb color', () => {
+            expect(setAlpha('rgb(100, 200, 300)', .35)).toBe('rgba(100, 200, 300, 0.35)');
+        });
+
+        test('set alpha given a hsl color', () => {
+            expect(setAlpha('hsl(100, 50%, 25%)', .35)).toBe('hsla(100, 50%, 25%, 0.35)');
+        });
+        
+        test('ignore original alpha on rgba or hsla color', () => {
+            expect(setAlpha('rgba(0, 161, 233, 0.5)', .8)).toBe('rgba(0, 161, 233, 0.8)');
+            expect(setAlpha('hsla(100, 50%, 25%, 0.5)', .8)).toBe('hsla(100, 50%, 25%, 0.8)');
         });
     });
 
