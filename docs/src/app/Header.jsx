@@ -44,7 +44,7 @@ const styles = theme => ({
         color: theme.colors.text.primary,
         opacity: .5,
         textDecoration: 'none',
-        transition: theme.transitions.common('.3s', 'opacity'),
+        transition: `opacity .3s ${theme.transitions.ease} 0ms`,
         willChange: 'opacity',
     },
     linkActive: {
