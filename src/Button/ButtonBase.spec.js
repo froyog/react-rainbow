@@ -76,7 +76,6 @@ describe('<ButtonBase />', () => {
         test('click behavior', () => {
             wrapper.childAt(0).simulate('click');
             expect(mockOnClick).toHaveBeenCalledTimes(0);
-        })
-
+        });
     });
 });

@@ -63,7 +63,7 @@ const ButtonBase = props => {
                 <RippleContainer center={centerRipple} />
             }
         </Component>
-    )
+    );
 };
 
 ButtonBase.propTypes = {
