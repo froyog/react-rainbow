@@ -7,7 +7,6 @@ import Docs from './Docs';
 
 const styles = theme => ({
     root: {
-        minHeight: '100vh',
     },
     main: {
         margin: '50px auto 0',

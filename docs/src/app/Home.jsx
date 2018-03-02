@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheets from 'react-jss';
-import { Typography } from 'react-rainbow';
+import { Link } from 'react-router-dom';
+import { Typography, Button } from 'react-rainbow';
 
 const styles = theme => ({
     logo: {
@@ -9,12 +10,15 @@ const styles = theme => ({
         left: 0,
         top: 100,
         marginLeft: -400,
-        width: 800,
-        height: 800,
+        width: 780,
+        height: 780,
         animation: 'spin 14s linear infinite, rainbow-colors 14s linear infinite',
     },
     hero: {
         padding: '260px 0 20px 480px',
+    },
+    getStarted: {
+        marginTop: theme.spacer * 3,
     },
     '@keyframes rainbow-colors': {
         '0%': { fill: '#ab47bc' }, /* violet */
@@ -56,6 +60,14 @@ const Home = props => {
                 >
                     A React UI library blending Rainbow CSS and material design
                 </Typography>
+                <Button 
+                    component={Link}
+                    to="/react/docs"
+                    color="primary"
+                    className={classes.getStarted}
+                >
+                    开始使用
+                </Button>
             </div>
         </div>
     );

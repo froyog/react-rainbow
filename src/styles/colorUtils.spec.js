@@ -2,8 +2,12 @@ import {
     hexToRGB,
     RGBToHex, 
     decompose, 
-    recompose, 
-    lighten 
+    recompose,
+    setAlpha,
+    lighten,
+    getLuminance,
+    getContrastRatio,
+    getContrastTextOf,
 } from './colorUtils';
 
 
@@ -95,6 +99,30 @@ describe('styles/colorUtils', () => {
         });
     });
 
+    describe('setAlpha', () => {
+        test('invoke with missing arguments', () => {
+            expect(() => { setAlpha(); }).toThrow();
+            expect(() => { setAlpha('#00a1e9'); }).toThrow();
+        });
+
+        test('set alpha given a hex color', () => {
+            expect(setAlpha('#00a1e9', .5)).toBe('rgba(0, 161, 233, 0.5)');
+        });
+
+        test('set alpha given a rgb color', () => {
+            expect(setAlpha('rgb(100, 200, 300)', .35)).toBe('rgba(100, 200, 300, 0.35)');
+        });
+
+        test('set alpha given a hsl color', () => {
+            expect(setAlpha('hsl(100, 50%, 25%)', .35)).toBe('hsla(100, 50%, 25%, 0.35)');
+        });
+        
+        test('ignore original alpha on rgba or hsla color', () => {
+            expect(setAlpha('rgba(0, 161, 233, 0.5)', .8)).toBe('rgba(0, 161, 233, 0.8)');
+            expect(setAlpha('hsla(100, 50%, 25%, 0.5)', .8)).toBe('hsla(100, 50%, 25%, 0.8)');
+        });
+    });
+
     describe('lighten', () => {
         test('lightens a color', () => {
             expect(lighten('#00a1e9', .7)).toBe('#b2e2f8');
@@ -105,6 +133,40 @@ describe('styles/colorUtils', () => {
         });
         test('invoke with invalid input', () => {
             expect(() => { lighten('rgb(300, -20, 1)'); }).toThrow();
+        });
+    });
+
+    describe('getLuminance', () => {
+        test('returns a valid luminance of black color', () => {
+            expect(getLuminance('rgb(0, 0, 0)')).toBe(0);
+        });
+
+        test('returns a valid luminance of rgb color', () => {
+            expect(getLuminance('rgb(0, 161, 233)')).toBe(0.314);
+        });
+
+        test('returns a valid luminance of hsl color', () => {
+            expect(getLuminance('hsl(100, 100%, 50%)')).toBe(0.121);
+        });
+    });
+
+    describe('getContrastRatio', () => {
+        test('returns a ratio of black : white', () => {
+            expect(getContrastRatio('#000', '#fff')).toBe(21);
+        });
+
+        test('returns a ratio for dark-grey : light-grey', () => {
+            expect(getContrastRatio('#707070', '#e5e5e5')).toBeCloseTo(3.93);
+        });
+        
+        test('returns a ratio for black : light-grey', () => {
+            expect(getContrastRatio('#000', '#888')).toBeCloseTo(5.92);
+        });
+    });
+
+    describe('getContrastTextOf', () => {
+        test('return contrast text color of #00a1e9', () => {
+            expect(getContrastTextOf('#00a1e9', '#333', '#fff')).toBe('#fff');
         });
     });
 });

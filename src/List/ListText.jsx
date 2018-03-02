@@ -52,7 +52,6 @@ const ListText = props => {
             <Typography 
                 className={customClasses.children}
                 type="body"
-                color="secondary"
             >
                 {children}
             </Typography>    

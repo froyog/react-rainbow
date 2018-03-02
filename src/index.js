@@ -8,3 +8,7 @@ export {
     ListSecondaryAction
 } from './List';
 export { default as Typography } from './Typography';
+export { 
+    Button,
+    ButtonBase,
+} from './Button';

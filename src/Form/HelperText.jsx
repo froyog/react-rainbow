@@ -9,7 +9,7 @@ const styles = theme => ({
         margin: 0,
         fontSize: theme.typography.pxToRem(12),
         color: theme.colors.text.secondary,
-        transition: theme.transition.common('.45s', 'opacity'),
+        transition: `opacity .45s ${theme.transitions.ease} 0ms`,
         opacity: 0,
     },
     active: {

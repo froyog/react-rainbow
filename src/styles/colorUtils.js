@@ -78,6 +78,7 @@ export const decompose = color => {
 
 /**
  * Converts a color object to plain CSS color string
+ * 
  * @param {object} colorObject - { type, values: number[] }
  * @param {string} colorObject.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'. Otherwise throw
  * @param {array} color.values - [n, n, n] or [n, n, n, n]
@@ -98,12 +99,36 @@ export const recompose = colorObject => {
     return `${type}(${values.join(', ')})`;
 };
 
+/**
+ * Set transparency of a given color
+ * 
+ * @param {string} color - CSS color, one of: #nnn, #nnnnnn, rgb, rgba, hsl, hsla
+ * @param {number} alpha - alpha to set
+ * @returns {string} - CSS color in rgba or hsla form
+ */
+export const setAlpha = (color, alpha) => {
+    if (!color) {
+        throw new Error('missing argument: color');
+    }
+    if (!alpha) {
+        throw new Error('missing argument: multiplier');
+    }
+
+    color = decompose(color);
+    let { type, values } = color;
+    if (type === 'rgb' || type === 'hsl') {
+        type += 'a';
+    }
+    values[3] = alpha;
+    return recompose({ type, values });
+};
+
 /** 
  * Lightens a color
  * 
  * @param {string} color - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
  * @param {number} multiplier - reflects the degree of lightening the given color
- * @returns {string} CSS color in rgb form
+ * @returns {string} CSS color in rgb form (hex if possible)
 */
 export const lighten = (color, multiplier) => {
     if (!color) {
@@ -127,4 +152,55 @@ export const lighten = (color, multiplier) => {
         return RGBToHex(recompose(color));
     }
     return recompose(color);
+};
+
+/**
+ * Formula: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * 
+ * @param {string} color - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
+ * @returns {number} The relative brightness
+ */
+export const getLuminance = color => {
+    if (!color) {
+        throw new Error('missing arguments: color');
+    }
+
+    const decomposedColor = decompose(color);
+    if (decomposedColor.type.indexOf('rgb' > -1)) {
+        const rgb = decomposedColor.values.map(val => {
+            val /= 255; // normalized
+            return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+        });
+        return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+    } else if (decomposedColor.type.indexOf('hsl') > -1) {
+        return decomposedColor.values[2] / 100;
+    }
+};
+
+/**
+ * Formula: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ * 
+ * @param {string} foreground - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
+ * @param {string} background - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
+ */
+export const getContrastRatio = (foreground, background) => {
+    const foreLuminance = getLuminance(foreground);
+    const backLuminance = getLuminance(background);
+    return (Math.max(foreLuminance, backLuminance) + 0.05) / (Math.min(foreLuminance, backLuminance) + 0.05);
+};
+
+/**
+ * Get the contrast text given the background color
+ * 
+ * @param {string} background - CSS color, one of: #nnn, #nnnnnn, rgb, hsl, rgba, hsla
+ * @param {string} darkText - theme.colors.text.primary
+ * @param {string} lightText - theme.colors.common.white
+ * @returns {string} One of dark text and light text
+ */
+export const getContrastTextOf = (background, darkText, lightText) => {
+    const contrastText = (getContrastRatio(background, darkText) >= 5.5)
+        ? darkText
+        : lightText;
+    
+    return contrastText;
 };
