@@ -184,6 +184,9 @@ Button.defaultProps = {
     elevate: 'raised',
     color: 'default',
     size: 'medium',
+    fullWidth: false,
+    disabled: false,
+    diableRipple: false,
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(Button);
