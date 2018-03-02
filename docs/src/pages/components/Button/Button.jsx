@@ -4,7 +4,7 @@ import { Button } from 'react-rainbow';
 const ButtonDemo = props => {
     const { classes } = props;
     return (
-        <Button elevate="float" color="primary">A</Button>
+        <Button elevate="raised" color="primary">GET STARTED</Button>
     );
 };
 

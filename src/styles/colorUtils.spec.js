@@ -4,7 +4,10 @@ import {
     decompose, 
     recompose,
     setAlpha,
-    lighten 
+    lighten,
+    getLuminance,
+    getContrastRatio,
+    getContrastTextOf,
 } from './colorUtils';
 
 
@@ -131,5 +134,39 @@ describe('styles/colorUtils', () => {
         test('invoke with invalid input', () => {
             expect(() => { lighten('rgb(300, -20, 1)'); }).toThrow();
         });
+    });
+
+    describe('getLuminance', () => {
+        test('returns a valid luminance of black color', () => {
+            expect(getLuminance('rgb(0, 0, 0)')).toBe(0);
+        });
+
+        test('returns a valid luminance of rgb color', () => {
+            expect(getLuminance('rgb(0, 161, 233)')).toBe(0.314);
+        });
+
+        test('returns a valid luminance of hsl color', () => {
+            expect(getLuminance('hsl(100, 100%, 50%)')).toBe(0.121);
+        });
+    });
+
+    describe('getContrastRatio', () => {
+        test('returns a ratio of black : white', () => {
+            expect(getContrastRatio('#000', '#fff')).toBe(21);
+        });
+
+        test('returns a ratio for dark-grey : light-grey', () => {
+            expect(getContrastRatio('#707070', '#e5e5e5')).toBeCloseTo(3.93);
+        });
+        
+        test('returns a ratio for black : light-grey', () => {
+            expect(getContrastRatio('#000', '#888')).toBeCloseTo(5.92);
+        });
+    });
+
+    describe('getContrastTextOf', () => {
+        test('return contrast text color of #00a1e9', () => {
+            expect(getContrastTextOf('#00a1e9', '#333', '#fff')).toBe('#fff');
+        })
     });
 });
