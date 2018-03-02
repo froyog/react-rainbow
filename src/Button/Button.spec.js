@@ -38,7 +38,7 @@ describe('<Button />', () => {
     });
     
     describe('prop: disabled', () => {
-        test('rendering diabled classes correctly', () => {
+        test('rendering disabled classes correctly', () => {
             const wrapper = shallowWithTheme(<Button disabled />);
             const classes = wrapper.prop('classes');
             expect(wrapper.dive().hasClass(classes.disabled)).toBe(true);

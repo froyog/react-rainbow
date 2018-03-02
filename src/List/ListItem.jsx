@@ -58,7 +58,7 @@ ListItem.propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     children: PropTypes.node,
-    component: PropTypes.oneOfType([ PropTypes.string, PropTypes.element ]),
+    component: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
     withBorder: PropTypes.bool,
     disabled: PropTypes.bool,
     ripple: PropTypes.bool,

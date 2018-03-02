@@ -186,7 +186,7 @@ Button.defaultProps = {
     size: 'medium',
     fullWidth: false,
     disabled: false,
-    diableRipple: false,
+    disableRipple: false,
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(Button);
