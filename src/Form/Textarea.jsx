@@ -52,7 +52,7 @@ const styles = theme => ({
         backgroundColor: theme.colors.common.white,
         lineHeight: 1.15,
         transformOrigin: 'left top',
-        transition: theme.transition.common('.3s'),
+        transition: `all .3s ${theme.transitions.ease} 0ms`,
         cursor: 'text',
     },
     labelActive: {
