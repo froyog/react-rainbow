@@ -1,10 +1,13 @@
 import React from 'react';
 
 const Demo = props => {
-    const { path } = props;
+    const { js: Component, raw } = props;
     return (
         <div>
-            DEMO path: {path}
+            <pre>
+                <code>{raw}</code>
+            </pre>
+            <Component />
         </div>
     );
 };

@@ -82,7 +82,6 @@ const Home = props => {
                         href="https://github.com/froyog/react-rainbow" 
                         target="_blank"
                         className={classes.link}
-                        activeClassName={classes.linkActive}
                     >
                         GitHub
                     </a></li>

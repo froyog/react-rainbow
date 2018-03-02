@@ -12,3 +12,7 @@ export {
     Button,
     ButtonBase,
 } from './Button';
+
+export {
+    capitalize
+} from './util';

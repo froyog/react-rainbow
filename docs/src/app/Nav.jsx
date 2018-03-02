@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheets from 'react-jss';
-import { List, ListItem, ListText, Typography } from 'react-rainbow';
-import { Link } from 'react-router-dom';
+import { List, ListItem, Typography } from 'react-rainbow';
+import Link from './Link';
+import { getNav } from 'react-rainbow-docs/utils/getNav';
 
 const styles = theme => ({
     root: {
@@ -11,60 +12,67 @@ const styles = theme => ({
         backgroundColor: '#f7f7f7',
         height: 'calc(100vh - 50px)',
         borderRight: '1px solid #ececec',
-        paddingLeft: 999,
-        paddingRight: 40,
-        paddingTop: 50,
-        marginLeft: -999,
-        marginRight: 100,
+        padding: '50px 40px 0 999px',
+        margin: '0 100px 0 -999px',
     },
     listTitle: {
         ...theme.typography.subtitle,
         padding: `${theme.spacer}px ${theme.spacer * 2}px`,
         fontWeight: 'bold',
-        fontSize: 16,
         color: 'rgba(0, 0, 0, .5)',
         cursor: 'pointer',
-        '&:hover': {
-            color: theme.colors.text.secondary,
-        },
     },
-    listTitleEng: {
-        display: 'inline-block',
-        fontSize: 14,
-        fontWeight: 500,
-        paddingLeft: 5,
+    // listTitleEng: {
+    //     display: 'inline-block',
+    //     fontSize: 14,
+    //     fontWeight: 500,
+    //     paddingLeft: 5,
+    // },
+    list: {
+        padding: '10px 0',
     },
+    link: {
+        padding: '5px 0',
+        fontWeight: theme.typography.fontWeightNormal,
+        fontSize: 16,
+    }
 });
 
 const Nav = props => {
     const { classes } = props;
+    const pages = getNav();
+    let renderPages = [];
+    // eslint-disable-next-line
+    for (let subtitle in pages) {
+        const info = pages[subtitle];
+        renderPages.push(
+            <Typography 
+                className={classes.listTitle}
+                key={subtitle}
+                component="div" 
+                type="subtitle" 
+            >
+                {info.title}
+                <List className={classes.list}>
+                    {
+                        info.links.map((page, i) => (
+                            <ListItem 
+                                component={Link} 
+                                key={i}
+                                className={classes.link}
+                                to={`/react/docs/${subtitle}/${page}`}
+                            >
+                                {info.linksTitle[i]}
+                            </ListItem>
+                        ))
+                    }
+                </List>
+            </Typography>
+        );
+    }
     return (
         <div className={classes.root}>
-            <Typography component="div" type="subtitle" className={classes.listTitle}>
-                现在开始<small className={classes.listTitleEng}>Getting Started</small>
-                <List>
-                    <ListItem component={Link} to="/react/docs/getting-started/installation">
-                        Installation
-                    </ListItem>
-                </List>
-            </Typography>
-            <Typography component="div" type="subtitle" className={classes.listTitle}>
-                组件<small className={classes.listTitleEng}>Components</small>
-                <List>
-                    <ListItem component={Link} to="/react/docs/components/Button">
-                        Button
-                    </ListItem>
-                    <ListItem component={Link} to="/react/docs/components/Switch">
-                        Switch
-                    </ListItem>
-                    <ListItem component={Link} to="/react/docs/components/List">
-                        List
-                    </ListItem>
-                </List>
-            </Typography>
-            <Typography component="div" type="subtitle" className={classes.listTitle}>
-                定制<small className={classes.listTitleEng}>Customization</small>
-            </Typography>
+            {renderPages}
         </div>
     );
 };
