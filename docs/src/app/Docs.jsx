@@ -1,13 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DocsRenderer from './DocsRenderer';
-import markdownContent from '../pages/components/Switch/switch.md';
-import ButtonDemo from '../pages/components/Button/Button';
+import Nav from './Nav';
+import injectSheets from 'react-jss';
 
-const Docs = () => {
+const styles = theme => ({
+    root: {
+        display: 'flex',
+    },
+    nav: {
+        flex: '0 0 300px',
+    },
+    content: {
+        flex: '1 1 auto',
+    },
+});
+
+const Docs = props => {
+    const { classes } = props
     return (
-        <ButtonDemo />
+        <div className={classes.root}>
+            <Nav className={classes.nav} />
+            <div className={classes.content}>GHello</div>
+        </div>
     );
 };
 
-export default Docs;
+Docs.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default injectSheets(styles)(Docs);

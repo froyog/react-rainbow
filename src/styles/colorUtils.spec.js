@@ -167,6 +167,6 @@ describe('styles/colorUtils', () => {
     describe('getContrastTextOf', () => {
         test('return contrast text color of #00a1e9', () => {
             expect(getContrastTextOf('#00a1e9', '#333', '#fff')).toBe('#fff');
-        })
+        });
     });
 });
