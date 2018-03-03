@@ -7,13 +7,14 @@ import { getNav } from 'react-rainbow-docs/utils/getNav';
 
 const styles = theme => ({
     root: {
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#f7f7f7',
         height: 'calc(100vh - 50px)',
         borderRight: '1px solid #ececec',
         padding: '50px 40px 0 999px',
         margin: '0 100px 0 -999px',
+        position: 'fixed',
+        backgroundColor: '#f7f7f7',
+    },
+    fix: {
     },
     listTitle: {
         ...theme.typography.subtitle,
@@ -35,7 +36,7 @@ const styles = theme => ({
         padding: '5px 0',
         fontWeight: theme.typography.fontWeightNormal,
         fontSize: 16,
-    }
+    },
 });
 
 const Nav = props => {

@@ -1,9 +1,9 @@
 export const getNav = () => {
     return {
         'getting-started': {
-            title: '现在开始 Getting Started',
-            links: ['installation'],
-            linksTitle: ['安装'],
+            title: 'Getting Started',
+            links: ['installation', 'quick-start'],
+            linksTitle: ['Installation 安装', 'Quick Start 快速开始'],
         },
         // customization: {
             
@@ -11,7 +11,7 @@ export const getNav = () => {
         components: {
             title: 'Components',
             links: ['Buttons', 'List', 'Switch'],
-            linksTitle: ['Buttons', 'List', 'Switch'],
+            linksTitle: ['Buttons 按钮', 'List 列表', 'Switch 开关'],
         }
     };
 };

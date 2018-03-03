@@ -20,7 +20,9 @@ const Docs = props => {
     const { classes } = props;
     return (
         <div className={classes.root}>
-            <Nav className={classes.nav} />
+            <div className={classes.nav}>
+                <Nav/>
+            </div>
             <div className={classes.content}>
                 <Route 
                     path="/react/docs/:directory/:document" 

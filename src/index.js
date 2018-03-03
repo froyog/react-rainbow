@@ -16,3 +16,8 @@ export {
 export {
     capitalize
 } from './util';
+
+export {
+    default as injectSheets,
+    ThemeProvider
+} from 'react-jss';

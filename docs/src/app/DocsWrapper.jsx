@@ -8,7 +8,7 @@ import { getSlice } from '../utils';
 
 const styles = theme => ({
     root: {
-        margin: '50px 0',
+        marginTop: 50,
     },
 });
 

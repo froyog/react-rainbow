@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-rainbow';
-import injectSheets from 'react-jss';
+import { injectSheets, Button } from 'react-rainbow';
 
 const styles = theme => ({
     space: {
