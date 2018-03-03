@@ -1,9 +1,9 @@
 import React from 'react';
-import MarkdownDocs from '../../app/MarkdownDocs';
+import DocsWrapper from '../../app/DocsWrapper';
 import markdown from './installation.md';
 
 const Installation = () => {
-    return <MarkdownDocs content={markdown} />;
+    return <DocsWrapper content={markdown} />;
 };
 
 export default Installation;

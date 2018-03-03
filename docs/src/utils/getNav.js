@@ -10,8 +10,8 @@ export const getNav = () => {
         // },
         components: {
             title: 'Components',
-            links: ['Button', 'List', 'Switch'],
-            linksTitle: ['Button', 'List', 'Switch'],
+            links: ['Buttons', 'List', 'Switch'],
+            linksTitle: ['Buttons', 'List', 'Switch'],
         }
     };
 };

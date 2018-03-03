@@ -14,6 +14,7 @@ const styles = theme => ({
         height: 50,
         zIndex: 1000,
         borderBottom: '1px solid #ececec',
+        backgroundColor: '#fff',
     },
     content: {
         maxWidth: 1200,

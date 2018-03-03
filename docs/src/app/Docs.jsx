@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import Nav from './Nav';
-import MarkdownDocs from './MarkdownDocs';
 import injectSheets from 'react-jss';
 
 const styles = theme => ({

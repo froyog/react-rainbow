@@ -2,35 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 import Demo from './Demo';
+import MarkdownRenderer from './MarkdownRenderer';
 import injectSheets from 'react-jss';
 import { getSlice } from '../utils';
 
 const styles = theme => ({
     root: {
-        '& h1': {
-            ...theme.typography['display-3'],
-        },
-        '& h2': {
-            ...theme.typography['display-4'],
-        },
-        '& h3': {
-            ...theme.typography.title,
-        },
-        '& h4': {
-            ...theme.typography.subtitle,
-        },
+        margin: '50px 0',
     },
 });
 
-const MarkdownDocs = props => {
+const DocsWrapper = props => {
     const { content, classes, demos } = props;
     const markdownSlice = getSlice(content);
-
+    
     return (
-        <article>
+        <article className={classes.root}>
             {
                 markdownSlice.map((slice, i) => {
                     if (/\[DEMO\]\((.*)\)/.test(slice)) {
+                        console.log(slice);
+                        
                         let result = /\[DEMO\]\((.*)\)/.exec(slice);
                         const { js, raw } = demos[result[1]];
                         return (
@@ -41,22 +33,16 @@ const MarkdownDocs = props => {
                             />
                         );
                     }
-                    return (
-                        <div 
-                            key={i}
-                            className={classes.root}
-                            dangerouslySetInnerHTML={{ __html: marked(slice) }}
-                        />
-                    );
+                    return <MarkdownRenderer key={i} content={slice}/>;
                 })
             }
         </article>
     );
 };
 
-MarkdownDocs.propTypes = {
+DocsWrapper.propTypes = {
     classes: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
 };
 
-export default injectSheets(styles)(MarkdownDocs);
+export default injectSheets(styles)(DocsWrapper);
