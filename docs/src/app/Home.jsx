@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheets from 'react-jss';
 import { Link } from 'react-router-dom';
-import { Typography, Button } from 'react-rainbow';
+import Footer from './Footer';
+import { injectSheets, Typography, Button } from 'react-rainbow';
 
 const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: 'calc(100vh - 50px)'
+    },
     logo: {
         position: 'absolute',
         left: 0,
@@ -16,6 +21,7 @@ const styles = theme => ({
     },
     hero: {
         padding: '260px 0 20px 480px',
+        flex: '1 0 auto',
     },
     getStarted: {
         marginTop: theme.spacer * 3,
@@ -40,7 +46,7 @@ const styles = theme => ({
 const Home = props => {
     const { classes } = props;
     return (
-        <div>
+        <div className={classes.root}>
             <svg className={classes.logo} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
                 <path d="M512 512m-91.264 0a91.264 91.264 0 1 0 182.528 0 91.264 91.264 0 1 0-182.528 0Z"  />
                 <path d="M256.341333 693.546667l-20.138666-5.12C86.101333 650.496 0 586.112 0 511.829333s86.101333-138.666667 236.202667-176.597333l20.138666-5.077333 5.674667 19.968a1003.946667 1003.946667 0 0 0 58.154667 152.661333l4.309333 9.088-4.309333 9.088a994.432 994.432 0 0 0-58.154667 152.661333l-5.674667 19.925334zM226.858667 381.866667c-114.090667 32.042667-184.106667 81.066667-184.106667 129.962666 0 48.853333 70.016 97.877333 184.106667 129.962667a1064.533333 1064.533333 0 0 1 50.432-129.962667A1056.085333 1056.085333 0 0 1 226.858667 381.866667z m540.8 311.68l-5.674667-20.010667a996.565333 996.565333 0 0 0-58.197333-152.618667l-4.309334-9.088 4.309334-9.088a999.253333 999.253333 0 0 0 58.197333-152.661333l5.674667-19.968 20.181333 5.077333c150.058667 37.930667 236.16 102.314667 236.16 176.64s-86.101333 138.666667-236.16 176.597334l-20.181333 5.12z m-20.949334-181.717334c20.48 44.330667 37.418667 87.893333 50.432 129.962667 114.133333-32.085333 184.106667-81.109333 184.106667-129.962667 0-48.896-70.016-97.877333-184.106667-129.962666a1057.621333 1057.621333 0 0 1-50.432 129.962666z"  />
@@ -62,13 +68,14 @@ const Home = props => {
                 </Typography>
                 <Button 
                     component={Link}
-                    to="/react/docs"
+                    to="/react/docs/getting-started/installation"
                     color="primary"
                     className={classes.getStarted}
                 >
                     开始使用
                 </Button>
             </div>
+            {/* <Footer /> */}
         </div>
     );
 };

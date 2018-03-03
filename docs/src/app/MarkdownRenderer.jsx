@@ -64,6 +64,10 @@ const styles = theme => ({
             fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
             padding: '2px 4px',
         },
+        '& pre code': {
+            backgroundColor: 'inherit',
+            padding: 0,
+        },
         '& li': {
             margin: 5,
             lineHeight: '24px',
@@ -81,6 +85,11 @@ const styles = theme => ({
                 borderBottom: '1px solid #1a1a1a',
                 backgroundColor: '#bbeffd',
             },
+        },
+        '& pre': {
+            margin: '0 !important',
+            padding: '20px !important',
+            backgroundColor: '#2d2d2d',
         },
         '& table': {
             width: '100%',
