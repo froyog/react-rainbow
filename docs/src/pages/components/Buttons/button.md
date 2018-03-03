@@ -70,3 +70,12 @@ component | string &vert; func | | 根节点使用的标签（或组件）
 disabled | bool | false | 按钮是否被禁用
 fullWidth | bool | false | 按钮是否撑满容器
 size | one of: `small`, `medium`, `large` | `'medium'` | 按钮大小
+
+## Props: `<ButtonBase />`
+
+Name | Type | Default | Description
+---- | ---- | ------- | -----------
+centerRipple | bool | false | `Ripple` 是否置于容器中心
+component | string &vert; func | `'button'` | 根节点使用的标签（或组件）
+disableRipple | bool | false | 禁用Ripple效果
+disabled | bool | false |

@@ -70,11 +70,10 @@ ButtonBase.propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
     centerRipple: PropTypes.bool,
-    // component: PropTypes.oneOf([ PropTypes.string, PropTypes.func ]),
+    component: PropTypes.oneOfType([ PropTypes.string, PropTypes.func ]),
     children: PropTypes.node,
     disableRipple: PropTypes.bool,
     disabled: PropTypes.bool,
-    type: PropTypes.string,
 };
 
 ButtonBase.defaultProps = {
