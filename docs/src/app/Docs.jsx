@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import Nav from './Nav';
 import injectSheets from 'react-jss';
+import MarkdownFallBack from './MarkdownFallBack';
+import NotFound from './NotFound';
 
 const styles = theme => ({
     root: {
@@ -30,8 +32,17 @@ const Docs = props => {
                         if (!match) return null;
                         const { directory, document } = match.params;
                         if (!directory || !document) return null;
-                        const Page = require(`react-rainbow-docs/pages/${directory}/${document}`).default;
-                        return <Page />;
+                        try {
+                            const Page = require(`react-rainbow-docs/pages/${directory}/${document}`).default;
+                            return <Page />;
+                        } catch (e) {
+                            try {
+                                const md = require(`react-rainbow-docs/pages/${directory}/${document}.md`);
+                                return <MarkdownFallBack md={md} />;
+                            } catch (e) {
+                                return <NotFound />;
+                            }
+                        }
                     }}
                 />
             </div>

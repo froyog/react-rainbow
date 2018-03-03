@@ -17,11 +17,14 @@ const styles = theme => ({
     fix: {
     },
     listTitle: {
-        ...theme.typography.subtitle,
+        ...theme.typography.title,
         padding: `${theme.spacer}px ${theme.spacer * 2}px`,
-        fontWeight: 'bold',
-        color: 'rgba(0, 0, 0, .5)',
+        fontWeight: 600,
+        color: 'rgba(0, 0, 0, .6)',
         cursor: 'pointer',
+        '&:hover': {
+            color: 'rgba(0, 0, 0, .9)',
+        }
     },
     // listTitleEng: {
     //     display: 'inline-block',
