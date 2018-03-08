@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MarkdownRenderer from './MarkdownRenderer';
 import injectSheets from 'react-jss';
-import cn from 'classnames';
 import { Typography } from 'react-rainbow';
 
 const styles = theme => ({

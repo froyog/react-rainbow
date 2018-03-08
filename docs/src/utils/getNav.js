@@ -10,8 +10,8 @@ export const getNav = () => {
         // },
         components: {
             title: 'Components',
-            links: ['Buttons', 'List', 'Switch'],
-            linksTitle: ['Buttons 按钮', 'List 列表', 'Switch 开关'],
+            links: ['Buttons', 'List', 'Switch', 'Typography'],
+            linksTitle: ['Buttons 按钮', 'List 列表', 'Switch 开关', 'Typography 字体'],
         },
     };
 };

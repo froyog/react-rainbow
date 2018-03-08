@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
 import { injectSheets, Typography, Button } from 'react-rainbow';
 
 const styles = theme => ({
@@ -78,6 +77,10 @@ const Home = props => {
             {/* <Footer /> */}
         </div>
     );
+};
+
+Home.propTypes = {
+    classes: PropTypes.object.isRequired,
 };
 
 export default injectSheets(styles)(Home);

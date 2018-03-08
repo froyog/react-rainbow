@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import marked from 'marked';
 import Demo from './Demo';
 import MarkdownRenderer from './MarkdownRenderer';
 import injectSheets from 'react-jss';
@@ -43,6 +42,7 @@ const DocsWrapper = props => {
 DocsWrapper.propTypes = {
     classes: PropTypes.object.isRequired,
     content: PropTypes.string.isRequired,
+    demos: PropTypes.object,
 };
 
 export default injectSheets(styles)(DocsWrapper);

@@ -68,7 +68,7 @@
     "start": "node scripts/start.js",
     "build:docs": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint": "eslint --ext .jsx,.js src --fix",
+    "lint": "eslint --ext .jsx,.js src --fix && eslint --ext .jsx .js docs/src --fix",
     "size": "size-limit",
     "size:why": "size-limit --why"
   },

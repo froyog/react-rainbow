@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import cn from 'classnames';
 import marked from 'marked';
 import prism from '../utils/prism';
 
@@ -158,11 +157,7 @@ const MarkdownRenderer = props => {
 
 MarkdownRenderer.propTypes = {
     classes: PropTypes.object.isRequired,
-    
-};
-
-MarkdownRenderer.defaultProps = {
-    
+    content: PropTypes.string.isRequired,
 };
 
 export default injectSheet(styles)(MarkdownRenderer);
