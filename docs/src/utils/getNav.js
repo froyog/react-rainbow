@@ -5,9 +5,11 @@ export const getNav = () => {
             links: ['installation', 'quick-start', 'general'],
             linksTitle: ['Installation 安装', 'Quick Start 快速开始', 'General 概述'],
         },
-        // customization: {
-            
-        // },
+        customizations: {
+            title: 'Customizations',
+            links: ['styles'],
+            linksTitle: ['Styles 自定义样式'],
+        },
         components: {
             title: 'Components',
             links: ['Buttons', 'List', 'Switch', 'Typography'],

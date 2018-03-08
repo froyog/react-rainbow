@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch } from 'react-rainbow';
 
-class SwitchDemo extends React.Component {
+class Label extends React.Component {
     constructor () {
         super();
         this.state = {
@@ -22,10 +22,12 @@ class SwitchDemo extends React.Component {
                 <Switch
                     active={this.state.active}
                     onChange={this.handleClick.bind(this)}
+                    label="Primary"
                 />
                 <Switch
                     active={false}
                     onChange={() => {}}
+                    label="Disabled"
                     disabled
                 />
             </div>
@@ -33,4 +35,4 @@ class SwitchDemo extends React.Component {
     }
 }
 
-export default SwitchDemo;
+export default Label;

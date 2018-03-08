@@ -95,6 +95,7 @@ const Switch = props => {
         disabled,
         label,
         disableRipple,
+        customClasses,
     } = props;
 
     return (
@@ -110,8 +111,10 @@ const Switch = props => {
             )}>
                 <span className={cn(
                     classes.guide,
+                    customClasses.guide,
                     { 
                         [classes.guideActive]: active, 
+                        [customClasses.guideActive]: active,
                         [classes.guideDisabled]: disabled,
                     },
                 )}></span>
@@ -119,12 +122,15 @@ const Switch = props => {
                     classes.toggleWrapper,
                     { 
                         [classes.toggleWrapperActive]: active, 
+                        [customClasses.toggleWrapperActive]: active
                     },
                 )}>
                     <span className={cn(
                         classes.toggle,
+                        customClasses.toggle,
                         { 
                             [classes.toggleActive]: active,
+                            [customClasses.toggleActive]: active,
                             [classes.toggleDisabled]: disabled, 
                         },
                     )}></span>
@@ -156,6 +162,17 @@ Switch.propTypes = {
     disabled: PropTypes.bool,
     label: PropTypes.string,
     disableRipple: PropTypes.bool,
+    customClasses: PropTypes.shape({
+        guide: PropTypes.string,
+        guideActive: PropTypes.string,
+        toggleWrapperActive: PropTypes.string,
+        toggle: PropTypes.string,
+        toggleActive: PropTypes.string,
+    }),
+};
+
+Switch.defaultProps = {
+    customClasses: {}
 };
 
 export default injectSheet(styles, { inject: ['classes'] })(Switch);
