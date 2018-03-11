@@ -32,7 +32,7 @@ Rainbow Project 中[文字](http://rainbow.twtstudio.com/docs/2_1.html)这篇文
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-component | one of type: `'string'`, `'func'` | `'button'` | 根节点使用的标签（或组件）
+component | one of type: `'string'`, `'func'` | | 根节点使用的标签（或组件），默认值根据 `componentMapper` 推断
 type | one of: `'display-1'`, `'display-2'`, `'display-3'`, `'display-4'`, `'title'`, `'subtitle'`, `'body'`, `'blockquote'`, `'highlight'` | `'body'` | 
 align | one of: `'center'`, `'left'`, `'right'`, `'justify'`, `'inherit'` | `'inherit'` | 文本的水平对齐方式
 color | one of: `'primary'`, `'secondary'`, `'textSecondary'`, `'error'`, `'inherit'`, `'default'` | `'default'` | 
