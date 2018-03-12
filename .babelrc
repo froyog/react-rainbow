@@ -9,7 +9,7 @@
             "plugins": [ "preval" ]
         },
         "commonjs": {
-            "presets": [ "./scripts/babel-preset.js", "stage-1", "react" ],
+            "presets": [ "./internals/babel-preset.js", "stage-1", "react" ],
             "plugins": [
                 "transform-object-assign",
                 "transform-react-constant-elements",
@@ -20,7 +20,7 @@
             ]
         },
         "modules": {
-            "presets": [ "./scripts/babel-preset.js", "stage-1", "react" ],
+            "presets": [ "./internals/babel-preset.js", "stage-1", "react" ],
             "plugins": [
                 "transform-object-assign",
                 "transform-react-constant-elements",

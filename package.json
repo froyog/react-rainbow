@@ -78,7 +78,8 @@
     "build:docs": "node scripts/build.js",
     "build:commonjs": "cross-env NODE_ENV=package BABEL_ENV=commonjs babel ./src --ignore *.spec.js --out-dir ./build/lib",
     "build:modules": "cross-env NODE_ENV=package BABEL_ENV=modules babel ./src --ignore *.spec.js --out-dir ./build/es",
-    "build": "yarn clean & yarn build:commonjs & yarn build:modules",
+    "build:copyFiles": "node internals/copyFiles.js",
+    "build": "yarn clean & yarn build:commonjs & yarn build:modules & yarn build:copyFiles",
     "clean": "rimraf ./build",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint --ext .jsx,.js src --fix && eslint --ext .jsx .js docs/src --fix",
@@ -86,7 +87,7 @@
     "size:why": "size-limit --why"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/test/setup.js",
+    "setupTestFrameworkScriptFile": "<rootDir>/internals/test/setup.js",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
