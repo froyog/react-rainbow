@@ -11,6 +11,7 @@ const styles = theme => ({
     demo: {
         padding: 20,
         border: `1px solid ${theme.colors.divider}`, 
+        backgroundColor: '#f7f7f7',
     },
     code: {
         '& pre': {

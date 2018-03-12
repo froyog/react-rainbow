@@ -7,8 +7,9 @@ import Typography from '../Typography';
 const styles = theme => ({
     root: {
         position: 'relative',
-        paddingBottom: theme.spacer,
+        padding: 0,
         margin: 0,
+        paddingBottom: theme.spacer,
         listStyle: 'none',
     },
     titleProvided: {
