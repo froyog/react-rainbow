@@ -17,6 +17,10 @@ export {
     ListSecondaryAction
 } from './List';
 export { default as Reboot } from './Reboot';
+export {
+    RippleContainer,
+    Ripple,
+} from './Ripple';
 export { default as Switch } from './Switch';
 export { default as Typography } from './Typography';
 export {
