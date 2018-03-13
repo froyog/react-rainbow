@@ -2,7 +2,7 @@ import React from 'react';
 import DocsWrapper from '../../../app/DocsWrapper';
 import markdown from './ripples.md';
 
-const Lists = () => {
+const Ripples = () => {
     return (
         <DocsWrapper 
             content={markdown} 
@@ -26,4 +26,4 @@ module.exports = require('fs')
     );
 };
 
-export default Lists;
+export default Ripples;
