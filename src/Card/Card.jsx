@@ -9,6 +9,7 @@ const styles = theme => ({
         boxShadow: theme.shadows.normal,
         marginBottom: theme.spacer * 3,
         borderRadius: 2,
+        backgroundColor: '#fff',
     },
     inverse: {
         backgroundColor: theme.colors.primary,
