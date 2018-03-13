@@ -1,6 +1,6 @@
 import React from 'react';
 import DocsWrapper from '../../../app/DocsWrapper';
-import markdown from './list.md';
+import markdown from './lists.md';
 
 const Lists = () => {
     return (
