@@ -9,7 +9,10 @@ export {
     CardAction,
     CardImage,
 } from './Card';
-
+export {
+    TextField,
+    Textarea,
+} from './Form';
 export { 
     default as List,
     ListItem, 
@@ -27,6 +30,8 @@ export {
     capitalize
 } from './util';
 
+
+// re-exports
 export {
     default as injectSheets,
     ThemeProvider

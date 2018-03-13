@@ -170,6 +170,10 @@ Textarea.propTypes = {
     rows: PropTypes.number,
     fullWidth: PropTypes.bool,
     disabled: PropTypes.bool,
+    customClasses: PropTypes.shape({
+        label: PropTypes.string,
+        textarea: PropTypes.textarea,
+    })
 };
 
 Textarea.defaultProps = {

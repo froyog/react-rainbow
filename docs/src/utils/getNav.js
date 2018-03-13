@@ -12,8 +12,28 @@ export const getNav = () => {
         },
         components: {
             title: 'Components',
-            links: ['Buttons', 'Cards', 'Lists', 'Reboot', 'Ripples', 'Switch', 'Typography'],
-            linksTitle: ['Buttons 按钮', 'Cards 卡片', 'Lists 列表', 'Reboot 初始化', 'Ripples 涟漪', 'Switch 开关', 'Typography 字体'],
+            links: [
+                'Buttons', 
+                'Cards', 
+                'Lists', 
+                'Reboot', 
+                'Ripples', 
+                'Switch', 
+                'Textarea',
+                'TextField', 
+                'Typography'
+            ],
+            linksTitle: [
+                'Buttons 按钮', 
+                'Cards 卡片', 
+                'Lists 列表', 
+                'Reboot 初始化', 
+                'Ripples 涟漪', 
+                'Switch 开关', 
+                'Textarea 多行文本',
+                'TextField 输入框', 
+                'Typography 字体'
+            ],
         },
     };
 };

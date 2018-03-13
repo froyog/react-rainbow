@@ -32,7 +32,7 @@ const styles = theme => ({
         userSelect: 'none',
         transformOrigin: 'left top 0px',
         transform: 'scale(1) translate(0, 0)',
-        transition: theme.transition.common('.45s'),
+        transition: `all .45s ${theme.transitions.ease} 0ms`,
     },
     labelFocus: {
         color: theme.colors.primary,
@@ -64,7 +64,7 @@ const styles = theme => ({
         margin: 0,
         boxSizing: 'content-box',
         borderBottom: '1px solid #e0e0e0',
-        transition: theme.transition.common('.45s'),
+        transition: `all .45s ${theme.transitions.ease} 0ms`,
     },
     bottomBarColored: {
         borderBottom: `2px solid ${theme.colors.primary}`,
@@ -101,13 +101,13 @@ const styles = theme => ({
         margin: `0 0 ${theme.spacer}px`,
         fontSize: 12,
         color: theme.colors.text.secondary,
-        transition: theme.transition.common('.45s', 'opacity'),
+        transition: `opacity .45s ${theme.transitions.ease} 0ms`,
         opacity: 0,
     },
     helperActive: {
         opacity: 1,
     },
-    errorMessage: {
+    error: {
         color: theme.colors.error,
     },
 });
@@ -152,9 +152,10 @@ class TextField extends React.Component {
             type,
             placeholder,
             fullWidth,
-            errorMessage,
+            error,
             disabled,
             helperText,
+            onChange,
             ...other,
         } = this.props;
         const { isFocus } = this.state;
@@ -176,7 +177,7 @@ class TextField extends React.Component {
                             {
                                 [classes.labelActive]: hasContent || isFocus,
                                 [classes.labelFocus]: isFocus,
-                                [classes.labelError]: errorMessage,
+                                [classes.labelError]: error,
                             },
                         )} 
                         htmlFor={id}
@@ -207,20 +208,20 @@ class TextField extends React.Component {
                                 classes.bottomBar,
                                 classes.bottomBarColored,
                                 {
-                                    [classes.bottomBarColoredActive]: isFocus || errorMessage,
-                                    [classes.bottomBarColoredError]: errorMessage,
+                                    [classes.bottomBarColoredActive]: isFocus || error,
+                                    [classes.bottomBarColoredError]: error,
                                 },
                             )}
                         />
                     </div>
                 </div>
                 {
-                    (errorMessage || helperText) &&
+                    (error || helperText) &&
                     <HelperText
-                        color={errorMessage && 'error'} 
+                        color={error ? 'error' : 'default'} 
                         active={isFocus || hasContent}
                     >
-                        {errorMessage ? errorMessage : helperText}
+                        {error ? error : helperText}
                     </HelperText>
                 }
             </div>
@@ -239,7 +240,7 @@ TextField.propTypes = {
     color: PropTypes.oneOf([ 'primary', 'secondary' ]),
     placeholder: PropTypes.string,
     fullWidth: PropTypes.bool,
-    errorMessage: PropTypes.string,
+    error: PropTypes.string,
     disabled: PropTypes.bool,
     helperText: PropTypes.string,
 };
