@@ -73,7 +73,7 @@ const Home = props => {
                         主页
                     </NavLink></li>
                     <li><NavLink 
-                        to="/react/docs" 
+                        to="/react/docs/getting-started/quick-start" 
                         className={classes.link}
                         activeClassName={classes.linkActive}
                     >

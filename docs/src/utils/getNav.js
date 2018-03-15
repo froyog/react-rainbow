@@ -7,8 +7,8 @@ export const getNav = () => {
         },
         customizations: {
             title: 'Customizations',
-            links: ['styles'],
-            linksTitle: ['Styles 自定义样式'],
+            links: ['styles', 'theming'],
+            linksTitle: ['Styles 自定义样式', 'Theming 主题'],
         },
         components: {
             title: 'Components',

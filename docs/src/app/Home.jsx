@@ -67,7 +67,7 @@ const Home = props => {
                 </Typography>
                 <Button 
                     component={Link}
-                    to="/react/docs/getting-started/installation"
+                    to="/react/docs/getting-started/quick-start"
                     color="primary"
                     className={classes.getStarted}
                 >

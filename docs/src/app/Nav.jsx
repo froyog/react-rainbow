@@ -13,6 +13,7 @@ const styles = theme => ({
         margin: '0 100px 0 -999px',
         position: 'fixed',
         backgroundColor: '#f7f7f7',
+        overflow: 'auto',
     },
     fix: {
     },
@@ -49,7 +50,7 @@ const Nav = props => {
     // eslint-disable-next-line
     for (let subtitle in pages) {
         const info = pages[subtitle];
-        renderPages.push(
+        renderPages.push( 
             <Typography 
                 className={classes.listTitle}
                 key={subtitle}
