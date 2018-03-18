@@ -20,8 +20,6 @@ const DocsWrapper = props => {
             {
                 markdownSlice.map((slice, i) => {
                     if (/\[DEMO\]\((.*)\)/.test(slice)) {
-                        console.log(slice);
-                        
                         let result = /\[DEMO\]\((.*)\)/.exec(slice);
                         const { js, raw } = demos[result[1]];
                         return (

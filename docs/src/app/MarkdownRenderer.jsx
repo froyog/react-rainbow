@@ -4,6 +4,16 @@ import injectSheet from 'react-jss';
 import marked from 'marked';
 import prism from '../utils/prism';
 
+let renderer = new marked.Renderer();
+
+renderer.link = (href, title, text) => {
+    if (href.startsWith('/react')) {
+        return `<a href="${href}">${text}</a>`;
+        
+    }
+    return `<a href="${href}" target="_blank">${text}</a>`;
+};
+
 marked.setOptions({
     gfm: true,
     tables: true,
@@ -34,7 +44,7 @@ marked.setOptions({
         }
         return prism.highlight(code, language);
     },
-    render: new marked.Renderer(),
+    renderer: renderer,
 });
 
 const styles = theme => ({
