@@ -5,6 +5,7 @@ import { injectSheets, Typography, Button } from 'react-rainbow';
 
 const styles = theme => ({
     root: {
+        minWidth: 1000,
         display: 'flex',
         flexDirection: 'column',
         minHeight: 'calc(100vh - 50px)'
