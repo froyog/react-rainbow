@@ -16,6 +16,9 @@ export const mountWithTheme = tree => {
     const context = shallow(<ThemeProvider theme={theme} />)
         .instance()
         .getChildContext();
-    // workaround provided by https://github.com/airbnb/enzyme/issues/814#issuecomment-362319285
-    return mount(shallow(tree, { context }).get(0));
+        
+    return mount(tree, {
+		context,
+		childContextTypes: ThemeProvider.childContextTypes
+	});
 };
