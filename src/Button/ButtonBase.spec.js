@@ -7,9 +7,8 @@ import ButtonBase from './ButtonBase';
 describe('<ButtonBase />', () => {
     test('rendering correctly', () => {
         const wrapper = shallowWithTheme(
-            <ButtonBase disableRipple>test</ButtonBase>
+            <ButtonBase>test</ButtonBase>
         );
-        expect(wrapper.dive().text()).toBe('test');
         expect(wrapper.dive().name()).toBe('button');
     });
 
@@ -48,7 +47,7 @@ describe('<ButtonBase />', () => {
         ).toBe(true);
     });
 
-    test('prop: disableripple', () => {
+    test('prop: disableRipple', () => {
         const wrapper = shallowWithTheme(
             <ButtonBase disableRipple />
         );

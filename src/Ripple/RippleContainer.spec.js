@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithTheme } from '../util-test';
+import { shallowWithTheme, mountWithTheme } from '../util-test';
 import RippleContainer from './RippleContainer';
 
 describe('<RippleContainer />', () => {
@@ -16,3 +16,18 @@ describe('<RippleContainer />', () => {
         expect(wrapper.dive().hasClass('test-class')).toBe(true);
     });
 });
+
+describe('functionality', () => {
+    let wrapper;
+    beforeAll(() => {
+        wrapper = mountWithTheme(<RippleContainer />);
+    });
+
+    test('creating unique ripples', () => {
+        expect(wrapper.state('nextKey')).toBe(0);
+        wrapper.simulate('mousedown');
+        expect(wrapper.state('nextKey')).toBe(1);
+        wrapper.simulate('mousedown');
+        expect(wrapper.state('nextKey')).toBe(2);
+    });
+})

@@ -17,8 +17,10 @@ export const mountWithTheme = tree => {
         .instance()
         .getChildContext();
         
-    return mount(tree, {
+    return mount(shallow(tree, {
 		context,
-		childContextTypes: ThemeProvider.childContextTypes
-	});
+	}).get(0), {
+        context,
+		childContextTypes: ThemeProvider.childContextTypes,
+    });
 };
