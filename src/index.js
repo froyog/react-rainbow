@@ -1,19 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'react-jss';
-import createTheme from './styles/createTheme';
-import Reboot from './Reboot';
-import App from './App.jsx';
-import registerServiceWorker from './registerServiceWorker';
+export { default as createTheme } from './styles/createTheme';
+export { 
+    Button,
+    ButtonBase,
+} from './Button';
+export {
+    default as Card,
+    CardContent,
+    CardAction,
+    CardImage,
+} from './Card';
+export {
+    TextField,
+    Textarea,
+} from './Form';
+export { 
+    default as List,
+    ListItem, 
+    ListText,
+    ListSecondaryAction
+} from './List';
+export { default as Reboot } from './Reboot';
+export {
+    RippleContainer,
+    Ripple,
+} from './Ripple';
+export { default as Switch } from './Switch';
+export { default as Typography } from './Typography';
+export {
+    capitalize
+} from './util';
 
 
-const Root = (
-    <ThemeProvider theme={createTheme()}>
-        <Reboot>
-            <App/>
-        </Reboot>
-    </ThemeProvider>
-);
-
-ReactDOM.render(Root, document.getElementById('root'));
-registerServiceWorker();
+// re-exports
+export {
+    default as injectSheets,
+    ThemeProvider
+} from 'react-jss';

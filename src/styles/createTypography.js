@@ -73,13 +73,6 @@ const createTypography = (colors, customTypography) => {
             lineHeight: 1.5,
             color: colors.text.primary,
         },
-        bodySmall: {
-            fontFamily,
-            fontSize: pxToRem(14),
-            fontWeight: fontWeightNormal,
-            lineHeight: 1.5,
-            color: colors.text.primary,
-        },
         blockquote: {
             fontFamily,
             fontSize: pxToRem(20),
@@ -99,6 +92,6 @@ const createTypography = (colors, customTypography) => {
             backgroundColor: '#fcf8e3',
         }
     }, other);
-}
+};
 
 export default createTypography;

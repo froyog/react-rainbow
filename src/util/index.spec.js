@@ -6,8 +6,8 @@ describe('utils', () => {
             expect(capitalize('test')).toBe('Test');
         });
         test('should throw when invalid arguments given', () => {
-            expect(() => { capitalize(1) }).toThrow();
-            expect(() => { capitalize() }).toThrow();
+            expect(() => { capitalize(1); }).toThrow();
+            expect(() => { capitalize(); }).toThrow();
         });
     });
-})
+});

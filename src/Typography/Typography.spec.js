@@ -25,7 +25,6 @@ describe('<Typography />', () => {
         'title',
         'subtitle',
         'body',
-        'bodySmall',
         'blockquote',
         'highlight',
     ].map(type => {
@@ -49,7 +48,7 @@ describe('<Typography />', () => {
             const wrapper = shallowWithTheme(<Typography color={color}>Test</Typography>);
             const classes = wrapper.prop('classes');
             expect(wrapper.dive().hasClass(classes[`color${capitalize(color)}`])).toBe(true);
-        })
+        });
     });
 
     test('rendering with custom mapper', () => {

@@ -2,17 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
-
+import { getContrastTextOf } from '../styles/colorUtils';
 
 const styles = theme => ({
     root: {
         boxShadow: theme.shadows.normal,
         marginBottom: theme.spacer * 3,
         borderRadius: 2,
+        backgroundColor: '#fff',
     },
     inverse: {
         backgroundColor: theme.colors.primary,
-        color: theme.colors.common.white,
+        color: getContrastTextOf(
+            theme.colors.primary,
+            theme.colors.text.primary,
+            theme.colors.common.white
+        ),
     },
 });
 

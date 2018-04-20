@@ -1,0 +1,37 @@
+{
+    "env": {
+        "development": {
+            "presets": [ "react-app" ],
+            "plugins": [ "preval" ]
+        },
+        "production": {
+            "presets": [ "react-app" ],
+            "plugins": [ "preval" ]
+        },
+        "test": {
+            "presets": [ "react-app" ]
+        },
+        "commonjs": {
+            "presets": [ "./internals/babel-preset.js", "stage-1", "react" ],
+            "plugins": [
+                "transform-object-assign",
+                "transform-react-constant-elements",
+                "transform-runtime",
+                ["transform-react-remove-prop-types", {
+                    "mode": "wrap"
+                }]
+            ]
+        },
+        "modules": {
+            "presets": [ "./internals/babel-preset.js", "stage-1", "react" ],
+            "plugins": [
+                "transform-object-assign",
+                "transform-react-constant-elements",
+                "transform-runtime",
+                ["transform-react-remove-prop-types", {
+                    "mode": "wrap"
+                }]
+            ]
+        },
+    }
+}

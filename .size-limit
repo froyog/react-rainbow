@@ -1,0 +1,12 @@
+[
+  {
+    "name": "size of whole library",
+    "path": "build/lib/index.js",
+    "limit": "100 KB"
+  },
+  {
+    "name": "cost of importing one component",
+    "path": "internals/test/overhead.js",
+    "limit": "20 KB"  
+  }
+]
