@@ -4,6 +4,20 @@
   "version": "0.1.0",
   "private": false,
   "homepage": "https://rainbow.twtstudio.com/react",
+  "description": "A React UI library blending Rainbow CSS and material design",
+  "keywords": [
+    "react",
+    "react-components",
+    "rainbow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/froyog/react-rainbow.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/froyog/react-rainbow/issues"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "deepmerge": "^2.0.1",
