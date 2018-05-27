@@ -1,5 +1,9 @@
 # Quick Start
 
+```bash
+npm install react-rainbow-ui
+```
+
 React Rainbow 中的组件是不能直接引用的，它们依赖于 `theme` 和相应的 `ThemeProvider` 才能正常工作。安装 `react-rainbow` 后我们已经提供了所需的组件和函数，当然您也可以从 `react-jss` 中自行引入。
 
 `index.jsx`
