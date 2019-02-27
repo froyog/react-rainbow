@@ -54,6 +54,7 @@ const styles = theme => ({
         transformOrigin: 'left top',
         transition: `all .3s ${theme.transitions.ease} 0ms`,
         cursor: 'text',
+        pointerEvents: 'none',
     },
     labelActive: {
         transform: 'translateY(-50%) scale(0.932)',
