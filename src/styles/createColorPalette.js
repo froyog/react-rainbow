@@ -1,5 +1,7 @@
+import * as deepmerge from 'deepmerge'
+
 const createColorPalette = customColorPalette => {
-    return {
+    const defaultColorPalette = {
         common: {
             black: '#000',
             white: '#fff',
@@ -19,6 +21,9 @@ const createColorPalette = customColorPalette => {
             disabled: '#d9d9d9',
         },
     };
+    const outputColorPalette = deepmerge(defaultColorPalette, customColorPalette);
+
+    return outputColorPalette;
 };
 
 export default createColorPalette;

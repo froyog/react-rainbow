@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "deepmerge": "^2.0.1",
+    "deepmerge": "^3.2.0",
     "prop-types": "^15.6.0",
     "react-jss": "^8.2.1",
     "react-transition-group": "^2.2.1"
