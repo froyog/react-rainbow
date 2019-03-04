@@ -121,7 +121,6 @@ class TextField extends React.Component {
 
         this.handleInputFocus = this.handleInputFocus.bind(this);
         this.handleInputBlur = this.handleInputBlur.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleInputFocus () {
@@ -134,11 +133,6 @@ class TextField extends React.Component {
         this.setState({
             isFocus: false,
         });
-    }
-    
-    handleInputChange (e) {
-        const { name, value } = e.target;
-        this.props.onChange(name, value);
     }
 
     render () {
@@ -197,7 +191,6 @@ class TextField extends React.Component {
                         disabled={disabled}
                         onFocus={this.handleInputFocus}
                         onBlur={this.handleInputBlur}
-                        onChange={this.handleInputChange}
                         {...other}
                     />
                     <div>
