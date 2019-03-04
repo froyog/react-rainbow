@@ -21,7 +21,7 @@ const createColorPalette = (customColorPalette = {}) => {
             disabled: '#d9d9d9',
         },
     };
-    const outputColorPalette = deepmerge.default(defaultColorPalette, customColorPalette);
+    const outputColorPalette = deepmerge(defaultColorPalette, customColorPalette);
 
     return outputColorPalette;
 };

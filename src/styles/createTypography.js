@@ -17,7 +17,7 @@ const createTypography = (colors, customTypography) => {
         return `${px / 16}rem`;
     };
 
-    return deepmerge.default({
+    return deepmerge({
         pxToRem,
         fontFamily,
         fontSize,
