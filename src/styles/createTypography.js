@@ -17,7 +17,7 @@ const createTypography = (colors, customTypography) => {
         return `${px / 16}rem`;
     };
 
-    return deepmerge({
+    return deepmerge.default({
         pxToRem,
         fontFamily,
         fontSize,
@@ -90,7 +90,7 @@ const createTypography = (colors, customTypography) => {
             lineHeight: 1.5,
             color: colors.text.primary,
             backgroundColor: '#fcf8e3',
-        }
+        },
     }, other);
 };
 
